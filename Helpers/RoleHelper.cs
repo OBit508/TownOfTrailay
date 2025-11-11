@@ -17,6 +17,7 @@ namespace TownOfTrailay.Helpers
         public static bool LastShipCheck;
         public static int MaxPoints = 720;
         public static Sprite KillButton;
+        public static bool CanUpdate => AmongUsClient.Instance.IsGameStarted || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
         public void Update()
         {
             TimeMasterUpdate();
@@ -24,7 +25,7 @@ namespace TownOfTrailay.Helpers
         }
         public void UpdateButtonsSprite()
         {
-            if (AmongUsClient.Instance.IsGameStarted && HudManager.Instance != null && PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data != null)
+            if (CanUpdate && HudManager.Instance != null && PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data != null)
             {
                 if (KillButton == null)
                 {
@@ -40,7 +41,7 @@ namespace TownOfTrailay.Helpers
                 GlobalPoints.Clear();
             }
             LastShipCheck = ShipStatus.Instance != null;
-            if (AmongUsClient.Instance.IsGameStarted)
+            if (CanUpdate)
             {
                 if (!RewindActive)
                 {

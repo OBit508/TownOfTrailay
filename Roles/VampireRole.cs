@@ -14,7 +14,7 @@ namespace TownOfTrailay.Roles
     {
         public List<(PlayerControl player, ChangeableValue<float> timer)> Kills = new List<(PlayerControl player, ChangeableValue<float> timer)>();
         public override string roleDisplayName => "Vampire";
-        public override string roleDescription => "You can poison others";
+        public override string roleDescription => "You can bite others";
         public VanillaButtonManager Button;
         public float BiteCooldown = 10;
         public float KillDelay = 20;
@@ -30,7 +30,7 @@ namespace TownOfTrailay.Roles
             Timer = BiteCooldown;
             Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "", TOUAssets.Bite, new Action(delegate
             {
-                if (CurrentTarget != null)
+                if (CurrentTarget != null && Timer <= 0)
                 {
                     Timer = BiteCooldown;
                     Kills.Add((CurrentTarget, new ChangeableValue<float>(KillDelay)));
@@ -41,6 +41,15 @@ namespace TownOfTrailay.Roles
         {
             if (Player.AmOwner)
             {
+                if (Timer > 0)
+                {
+                    Timer -= Time.deltaTime;
+                    if (Timer < 0)
+                    {
+                        Timer = 0;
+                    }
+                }
+                Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
                 SetTarget(Player.FindClosestTarget());
                 for (int i = Kills.Count - 1; i >= 0; i--)
                 {

@@ -64,23 +64,26 @@ namespace TownOfTrailay.Roles
         }
         public void CreateMenu()
         {
-            List<PlayerPickOption> options = new List<PlayerPickOption>();
-            foreach (GameData.PlayerInfo target in GameData.Instance.AllPlayers)
+            if (Timer <= 0 && !Disguised)
             {
-                if (!target.Disconnected || target != PlayerControl.LocalPlayer.Data && !target.IsDead)
+                List<PlayerPickOption> options = new List<PlayerPickOption>();
+                foreach (GameData.PlayerInfo target in GameData.Instance.AllPlayers)
                 {
-                    string name = target.PlayerName;
-                    if (target.IsDead)
+                    if (!target.Disconnected || target != PlayerControl.LocalPlayer.Data && !target.IsDead)
                     {
-                        name += " (Dead)";
+                        string name = target.PlayerName;
+                        if (target.IsDead)
+                        {
+                            name += " (Dead)";
+                        }
+                        options.Add(new PlayerPickOption(name, Color.white, (byte)target.ColorId, new Action(delegate
+                        {
+                            RpcDisguise(target);
+                        })));
                     }
-                    options.Add(new PlayerPickOption(name, Color.white, (byte)target.ColorId, new Action(delegate
-                    {
-                        RpcDisguise(target);
-                    })));
                 }
+                PlayerPickMenu.Create(options);
             }
-            PlayerPickMenu.Create(options);
         }
         public void Disguise(GameData.PlayerInfo playerInfo)
         {
