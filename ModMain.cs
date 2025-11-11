@@ -16,9 +16,16 @@ namespace TownOfTrailay
         public static void Load()
         {
             TOUAssets.LoadAssets();
+            AddRole<BaitRole>();
+            AddRole<ClutchRole>();
+            AddRole<CrewpostorRole>();
+            AddRole<HunterRole>();
+            AddRole<SabotagerRole>();
+            AddRole<SerialKillerRole>();
             AddRole<TheGlitchRole>();
             AddRole<TimeMasterRole>();
-            new GameObject("TimePointManager").AddComponent<RoleHelper>().DontDestroy();
+            AddRole<UncertainRole>();
+            new GameObject("RoleHelper").AddComponent<RoleHelper>().DontDestroy();
             Harmony.PatchAll();
         }
         public static void AddRole<T>() where T : RoleBehaviour

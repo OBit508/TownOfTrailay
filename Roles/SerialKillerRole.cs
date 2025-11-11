@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace TownOfTrailay.Roles
 {
-    public class SerialKillerImpostorRole : RoleBehaviour
+    public class SerialKillerRole : RoleBehaviour
     {
         public override string roleDisplayName => "Serial killer";
         public override string roleDescription => "You are Serial killer. kill everyone to win";
