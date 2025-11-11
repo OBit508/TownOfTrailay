@@ -25,6 +25,8 @@ namespace TownOfTrailay
             AddRole<TheGlitchRole>();
             AddRole<TimeMasterRole>();
             AddRole<UncertainRole>();
+            AddRole<VampireRole>();
+            AddRole<PoisonerRole>();
             new GameObject("RoleHelper").AddComponent<RoleHelper>().DontDestroy();
             Harmony.PatchAll();
         }

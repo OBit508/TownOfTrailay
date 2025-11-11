@@ -16,15 +16,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Assets\bite.png" />
 	  <None Remove="Assets\clock.png" />
 	  <None Remove="Assets\clutchKill.png" />
 	  <None Remove="Assets\mimic.png" />
+	  <None Remove="Assets\poison.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="Assets\bite.png" />
 	  <EmbeddedResource Include="Assets\clock.png" />
 	  <EmbeddedResource Include="Assets\clutchKill.png" />
 	  <EmbeddedResource Include="Assets\mimic.png" />
+	  <EmbeddedResource Include="Assets\poison.png" />
 	</ItemGroup>
 
 	<ItemGroup>

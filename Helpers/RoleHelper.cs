@@ -20,6 +20,7 @@ namespace TownOfTrailay.Helpers
         public void Update()
         {
             TimeMasterUpdate();
+            UpdateButtonsSprite();
         }
         public void UpdateButtonsSprite()
         {

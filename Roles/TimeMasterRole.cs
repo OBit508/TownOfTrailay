@@ -9,7 +9,7 @@ using TownOfTrailay.Assets;
 
 namespace TownOfTrailay.Roles
 {
-    public class TimeMasterRole : TOUBaseRole
+    public class TimeMasterRole : TOTBaseRole
     {
         public override string roleDisplayName => "Time Master";
         public override string roleDescription => "You can rewind the time";

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TownOfTrailay.Helpers
 {
-    public class TOUBaseRole : RoleBehaviour
+    public class TOTBaseRole : RoleBehaviour
     {
         private void Start()
         {

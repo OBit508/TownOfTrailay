@@ -8,7 +8,7 @@ namespace TownOfTrailay
     {
         RpcCheckRewind,
         RpcRewind,
-        RpcCheckDisguise,
-        RpcDisguise
+        RpcDisguise,
+        RpcPoison,
     }
 }

@@ -13,7 +13,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace TownOfTrailay.Roles
 {
-    public class TheGlitchRole : TOUBaseRole
+    public class TheGlitchRole : TOTBaseRole
     {
         public bool Disguised;
         public float MimicCooldown = 10;
@@ -36,24 +36,24 @@ namespace TownOfTrailay.Roles
         }
         public void Update()
         {
-            if (Timer > 0)
+            if (Player.AmOwner)
             {
-                Timer -= Time.deltaTime;
-                if (Timer <= 0)
+                if (Timer > 0)
                 {
-                    if (Disguised && !CheckDisguise(null))
+                    Timer -= Time.deltaTime;
+                    if (Timer <= 0)
                     {
-                        SendRpc(RpcCalls.RpcCheckRewind, new Action<MessageWriter>(delegate (MessageWriter writer)
+                        if (Disguised)
                         {
-                            writer.Write(false);
-                        }));
+                            RpcDisguise(null);
+                        }
+                        Timer = 0;
                     }
-                    Timer = 0;
                 }
+                Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
+                Button.CooldownText.color = Disguised ? Palette.Purple : Color.white;
+                Button.spriteRender.color = Disguised ? Palette.DisabledColor : Color.white;
             }
-            Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
-            Button.CooldownText.color = Disguised ? Palette.Purple : Color.white;
-            Button.spriteRender.color = Disguised ? Palette.DisabledColor : Color.white;
         }
         public override void OnMeetingCalled()
         {
@@ -76,14 +76,7 @@ namespace TownOfTrailay.Roles
                     }
                     options.Add(new PlayerPickOption(name, Color.white, (byte)target.ColorId, new Action(delegate
                     {
-                        if (!CheckDisguise(target))
-                        {
-                            SendRpc(RpcCalls.RpcCheckRewind, new Action<MessageWriter>(delegate (MessageWriter writer) 
-                            {
-                                writer.Write(true);
-                                writer.WriteNetObject(target.Object);
-                            }));
-                        }
+                        RpcDisguise(target);
                     })));
                 }
             }
@@ -108,29 +101,20 @@ namespace TownOfTrailay.Roles
                         Disguise(target.Data);
                     }
                     break;
-                case RpcCalls.RpcCheckDisguise:
-                    bool flag = reader.ReadBoolean();
-                    CheckDisguise(flag ? reader.ReadNetObject<PlayerControl>().Data : null);
-                    break;
             }
         }
-        public bool CheckDisguise(GameData.PlayerInfo playerInfo)
+        public void RpcDisguise(GameData.PlayerInfo playerInfo)
         {
-            if (AmongUsClient.Instance.AmHost)
+            SendRpc(RpcCalls.RpcDisguise, new Action<MessageWriter>(delegate (MessageWriter writer)
             {
-                SendRpc(RpcCalls.RpcDisguise, new Action<MessageWriter>(delegate (MessageWriter writer)
+                writer.WriteNetObject(Player);
+                writer.Write(Disguised);
+                if (!Disguised)
                 {
-                    writer.WriteNetObject(Player);
-                    writer.Write(Disguised);
-                    if (!Disguised)
-                    {
-                        writer.WriteNetObject(playerInfo.Object);
-                    }
-                }));
-                Disguise(playerInfo);
-                return true;
-            }
-            return false;
+                    writer.WriteNetObject(playerInfo.Object);
+                }
+            }));
+            Disguise(playerInfo);
         }
     }
 }
