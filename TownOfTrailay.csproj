@@ -1,0 +1,323 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include=".\Resources\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="GameLibs\*.dll">
+			<HintPath>GameLibs\%(FileName)%(Extension)</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Assets\clock.png" />
+	  <None Remove="Assets\mimic.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Assets\clock.png" />
+	  <EmbeddedResource Include="Assets\mimic.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="GameLibs\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="0Harmony">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\0Harmony.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Addressables">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Addressables.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Analytics.DataPrivacy">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Analytics.DataPrivacy.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Analytics.StandardEvents">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Analytics.StandardEvents.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Analytics.Tracker">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Analytics.Tracker.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.ResourceManager">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.ResourceManager.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.ScriptableBuildPipeline">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.ScriptableBuildPipeline.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Analytics">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Analytics.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Analytics">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Analytics.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Configuration">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Configuration.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Device">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Device.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Environments">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Environments.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Environments.Internal">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Environments.Internal.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Internal">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Internal.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Networking">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Networking.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Registration">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Registration.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Scheduler">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Scheduler.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Telemetry">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Telemetry.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Services.Core.Threading">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.Services.Core.Threading.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.TextMeshPro">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\Unity.TextMeshPro.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AccessibilityModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AIModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.AIModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AndroidJNIModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AnimationModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.ARModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.ARModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AssetBundleModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AudioModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.ClothModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.CoreModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.CrashReportingModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.DirectorModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.DSPGraphModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.GameCenterModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.GIModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.GIModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.GridModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.GridModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.HotReloadModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.ImageConversionModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.IMGUIModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.InputLegacyModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.InputModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.InputModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.JSONSerializeModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.LocalizationModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.ParticleSystemModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.PerformanceReportingModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Physics2DModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.PhysicsModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.ProfilerModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.AppleCore">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.AppleCore.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.AppleMacosStub">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.AppleMacosStub.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.AppleStub">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.AppleStub.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.Codeless">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.Codeless.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.Security">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.Security.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.SecurityCore">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.Stores">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.Stores.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.WinRTCore">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.WinRTCore.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.Purchasing.WinRTStub">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.Purchasing.WinRTStub.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.ScreenCaptureModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.SharedInternalsModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.SpriteMaskModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.SpriteShapeModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.StreamingModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.SubstanceModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.SubsystemsModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.TerrainModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.TerrainPhysicsModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.TextCoreModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.TextRenderingModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.TilemapModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.TLSModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UI">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UI.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UIElementsModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UIElementsNativeModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UIElementsNativeModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UIModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UIModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UmbraModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UNETModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UNETModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityAnalyticsModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityConnectModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityCurlModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityCurlModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityTestProtocolModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityWebRequestModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.VehiclesModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.VFXModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.VideoModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.VRModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.VRModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.WindModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.WindModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.XRModule">
+	    <HintPath>..\..\..\ModdingUs-2025.6.23\assets\bin\Data\Managed\UnityEngine.XRModule.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>
