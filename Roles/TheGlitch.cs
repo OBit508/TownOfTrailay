@@ -32,7 +32,7 @@ namespace TownOfTrailay.Roles
         }
         public override void OnRoleAdded()
         {
-            Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Test", TOUAssets.Mimic, new Action(CreateMenu));
+            Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Mimic", TOUAssets.Mimic, new Action(CreateMenu));
             Timer = MimicCooldown;
         }
         public void Update()

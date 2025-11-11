@@ -12,8 +12,8 @@ namespace TownOfTrailay.Assets
         public static Sprite Mimic;
         public static void LoadAssets()
         {
-            Clock = Utils.LoadSprite("NewRoles.Assets.clock.png", 75);
-            Mimic = Utils.LoadSprite("NewRoles.Assets.mimic.png", 100);
+            Clock = Utils.LoadSprite("TownOfTrailay.Assets.clock.png", 75);
+            Mimic = Utils.LoadSprite("TownOfTrailay.Assets.mimic.png", 100);
         }
     }
 }
