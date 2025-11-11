@@ -9,7 +9,7 @@ using TownOfTrailay.Assets;
 
 namespace TownOfTrailay.Roles
 {
-    public class TimeMaster : TOUBaseRole
+    public class TimeMasterRole : TOUBaseRole
     {
         public override string roleDisplayName => "Time Master";
         public override string roleDescription => "You can rewind the time";
@@ -27,7 +27,7 @@ namespace TownOfTrailay.Roles
             Timer = RewindCooldown;
             Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Rewind", TOUAssets.Clock, delegate
             {
-                if (!TimeMasterHelper.RewindActive && Timer <= 0 && TimeMasterHelper.GlobalPoints.Count >= TimeMasterHelper.MaxPoints)
+                if (!RoleHelper.RewindActive && Timer <= 0 && RoleHelper.GlobalPoints.Count >= RoleHelper.MaxPoints)
                 {
                     Timer = AfterRewindCooldown;
                     if (!CheckRewind())
@@ -41,7 +41,7 @@ namespace TownOfTrailay.Roles
         {
             if (Player.AmOwner)
             {
-                if (Timer > 0 && !TimeMasterHelper.RewindActive)
+                if (Timer > 0 && !RoleHelper.RewindActive)
                 {
                     Timer -= Time.deltaTime;
                     if (Timer < 0)
@@ -49,9 +49,9 @@ namespace TownOfTrailay.Roles
                         Timer = 0;
                     }
                 }
-                Button.CooldownText.text = Timer > 0 && !TimeMasterHelper.RewindActive ? ((int)Timer).ToString() : "";
-                Button.spriteRender.color = TimeMasterHelper.RewindActive ? Palette.DisabledGrey : Color.white;
-                Player.PrivateSetName("Time points: " + TimeMasterHelper.GlobalPoints.Count.ToString() + " (" + (TimeMasterHelper.RewindActive ? "<color=#0000ff>Active</color>" : TimeMasterHelper.GlobalPoints.Count < TimeMasterHelper.MaxPoints ? "<color=#ff0000>Loading</color>" : "<color=#28ba00>Loaded</color>") + ")\n" + Player.name);
+                Button.CooldownText.text = Timer > 0 && !RoleHelper.RewindActive ? ((int)Timer).ToString() : "";
+                Button.spriteRender.color = RoleHelper.RewindActive ? Palette.DisabledGrey : Color.white;
+                Player.PrivateSetName("Time points: " + RoleHelper.GlobalPoints.Count.ToString() + " (" + (RoleHelper.RewindActive ? "<color=#0000ff>Active</color>" : RoleHelper.GlobalPoints.Count < RoleHelper.MaxPoints ? "<color=#ff0000>Loading</color>" : "<color=#28ba00>Loaded</color>") + ")\n" + Player.name);
             }
         }
         public override void HandleRpc(MessageReader reader, int rpc)
@@ -59,7 +59,7 @@ namespace TownOfTrailay.Roles
             switch ((RpcCalls)rpc)
             {
                 case RpcCalls.RpcRewind:
-                    TimeMasterHelper.RewindActive = true;
+                    RoleHelper.RewindActive = true;
                     break;
                 case RpcCalls.RpcCheckRewind:
                     CheckRewind();
@@ -70,9 +70,9 @@ namespace TownOfTrailay.Roles
         {
             if (AmongUsClient.Instance.AmHost)
             {
-                if (TimeMasterHelper.GlobalPoints.Count >= TimeMasterHelper.MaxPoints)
+                if (RoleHelper.GlobalPoints.Count >= RoleHelper.MaxPoints)
                 {
-                    TimeMasterHelper.RewindActive = true;
+                    RoleHelper.RewindActive = true;
                     SendRpc(RpcCalls.RpcRewind);
                 }
                 return true;

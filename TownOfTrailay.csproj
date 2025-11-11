@@ -17,11 +17,13 @@
 
 	<ItemGroup>
 	  <None Remove="Assets\clock.png" />
+	  <None Remove="Assets\clutchKill.png" />
 	  <None Remove="Assets\mimic.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Assets\clock.png" />
+	  <EmbeddedResource Include="Assets\clutchKill.png" />
 	  <EmbeddedResource Include="Assets\mimic.png" />
 	</ItemGroup>
 

@@ -16,9 +16,9 @@ namespace TownOfTrailay
         public static void Load()
         {
             TOUAssets.LoadAssets();
-            AddRole<TheGlitch>();
-            AddRole<TimeMaster>();
-            new GameObject("TimePointManager").AddComponent<TimeMasterHelper>().DontDestroy();
+            AddRole<TheGlitchRole>();
+            AddRole<TimeMasterRole>();
+            new GameObject("TimePointManager").AddComponent<RoleHelper>().DontDestroy();
             Harmony.PatchAll();
         }
         public static void AddRole<T>() where T : RoleBehaviour

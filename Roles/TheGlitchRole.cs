@@ -13,7 +13,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace TownOfTrailay.Roles
 {
-    public class TheGlitch : TOUBaseRole
+    public class TheGlitchRole : TOUBaseRole
     {
         public bool Disguised;
         public float MimicCooldown = 10;
@@ -28,7 +28,6 @@ namespace TownOfTrailay.Roles
             enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Crewmate, RoleTeamTypes.Impostor };
             CanUseKillButton = true;
             CanVent = true;
-            CanSabotage = true;
         }
         public override void OnRoleAdded()
         {
@@ -54,6 +53,7 @@ namespace TownOfTrailay.Roles
             }
             Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
             Button.CooldownText.color = Disguised ? Palette.Purple : Color.white;
+            Button.spriteRender.color = Disguised ? Palette.DisabledColor : Color.white;
         }
         public override void OnMeetingCalled()
         {
