@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using TownOfTrailay.Helpers;
 using TownOfTrailay.Helpers.Utilities;
 using TownOfTrailay.Assets;
+using TownOfTrailay.Helpers.Role;
 
 namespace TownOfTrailay.Roles
 {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TownOfTrailay.Assets;
-using TownOfTrailay.Helpers;
+using TownOfTrailay.Helpers.Role;
 using TownOfTrailay.Helpers.Utilities;
 using UnityEngine;
 

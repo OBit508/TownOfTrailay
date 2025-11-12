@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TownOfTrailay.Assets;
-using TownOfTrailay.Helpers;
+using TownOfTrailay.Helpers.Role;
 using TownOfTrailay.Helpers.Utilities;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -25,6 +25,7 @@ namespace TownOfTrailay.Roles
             RoleTeamType = RoleTeamTypes.Impostor;
             enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Crewmate, RoleTeamTypes.Neutral };
             CanVent = true;
+            CanSabotage = true;
         }
         public override void OnRoleAdded()
         {

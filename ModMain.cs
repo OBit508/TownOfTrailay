@@ -1,12 +1,15 @@
 ﻿using HarmonyLib;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using TownOfTrailay.Assets;
+using TownOfTrailay.Helpers.Features;
+using TownOfTrailay.Helpers.Role;
+using TownOfTrailay.Helpers.Utilities;
 using TownOfTrailay.Roles;
 using UnityEngine;
-using TownOfTrailay.Helpers;
-using TownOfTrailay.Helpers.Utilities;
-using TownOfTrailay.Assets;
 
 namespace TownOfTrailay
 {
@@ -28,6 +31,8 @@ namespace TownOfTrailay
             AddRole<VampireRole>();
             AddRole<PoisonerRole>();
             new GameObject("RoleHelper").AddComponent<RoleHelper>().DontDestroy();
+            CosmeticLoaderManager.LoadCosmetics();
+            MapLoaderManager.LoadMaps();
             Harmony.PatchAll();
         }
         public static void AddRole<T>() where T : RoleBehaviour

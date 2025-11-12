@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using TownOfTrailay.Assets;
-using TownOfTrailay.Helpers;
+using TownOfTrailay.Helpers.Role;
 using TownOfTrailay.Helpers.Utilities;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -44,11 +44,12 @@ namespace TownOfTrailay.Roles
                     Timer -= Time.deltaTime;
                     if (Timer <= 0)
                     {
+                        Timer = 0;
                         if (Disguised)
                         {
                             RpcDisguise(null);
+                            Timer = MimicCooldown;
                         }
-                        Timer = 0;
                     }
                 }
                 Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
