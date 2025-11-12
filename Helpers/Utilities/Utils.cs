@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using TMPro;
+using TownOfTrailay.Assets;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -50,7 +51,7 @@ namespace TownOfTrailay.Helpers.Utilities
             UnityEngine.Object.DontDestroyOnLoad(obj);
             return obj;
         }
-        public static VanillaButtonManager Create(Transform parent, RoleBehaviour role, string abilityName, Sprite abilitySprite, Action onClick)
+        public static VanillaButtonManager CreateButton(Transform parent, RoleBehaviour role, string abilityName, Sprite abilitySprite, Action onClick)
         {
             GameObject gameObject = UnityEngine.Object.Instantiate(DestroyableSingleton<CachedMaterials>.Instance.abilityButton, parent).gameObject;
             AbilityButtonManager component = gameObject.GetComponent<AbilityButtonManager>();
@@ -70,6 +71,43 @@ namespace TownOfTrailay.Helpers.Utilities
             vanillaButtonManager.Refresh();
             vanillaButtonManager.GetComponent<PassiveButton>().OnClick.RemoveAllListeners();
             vanillaButtonManager.GetComponent<PassiveButton>().OnClick.AddListener(new UnityAction(vanillaButtonManager.DoClick));
+            return vanillaButtonManager;
+        }
+        public static LimitedUsesButtonManager CreateUsesButton(Transform parent, RoleBehaviour role, string abilityName, Sprite abilitySprite, Action onClick)
+        {
+            GameObject gameObject = UnityEngine.Object.Instantiate(DestroyableSingleton<CachedMaterials>.Instance.abilityButton, parent).gameObject;
+            AbilityButtonManager component = gameObject.GetComponent<AbilityButtonManager>();
+            TextMeshPro abilityText = component.AbilityText;
+            TextMeshPro cooldownText = component.CooldownText;
+            SpriteRenderer spriteRender = component.spriteRender;
+            UnityEngine.Object.Destroy(component);
+            LimitedUsesButtonManager vanillaButtonManager = gameObject.AddComponent<LimitedUsesButtonManager>();
+            vanillaButtonManager.spriteRender = spriteRender;
+            vanillaButtonManager.CooldownText = cooldownText;
+            vanillaButtonManager.CooldownText.gameObject.SetActive(true);
+            vanillaButtonManager.AbilityText = abilityText;
+            vanillaButtonManager.TargetRole = role;
+            vanillaButtonManager.spriteRender.sprite = abilitySprite;
+            vanillaButtonManager.AbilityName = abilityName;
+            vanillaButtonManager.onClick = onClick;
+            vanillaButtonManager.Refresh();
+            vanillaButtonManager.GetComponent<PassiveButton>().OnClick.RemoveAllListeners();
+            vanillaButtonManager.GetComponent<PassiveButton>().OnClick.AddListener(new UnityAction(vanillaButtonManager.DoClick));
+            SpriteRenderer counter = new GameObject("Counter")
+            {
+                layer = vanillaButtonManager.gameObject.layer,
+                transform =
+                {
+                    parent = vanillaButtonManager.transform,
+                    localPosition = new Vector3(-0.4f, 0.2f, -1),
+                    localScale = Vector3.one * 0.9f
+                }
+            }.AddComponent<SpriteRenderer>();
+            counter.sprite = TOTAssets.UsesCounter;
+            vanillaButtonManager.UsesText = GameObject.Instantiate<TextMeshPro>(vanillaButtonManager.CooldownText, counter.transform);
+            vanillaButtonManager.UsesText.transform.localPosition = new Vector3(0, 0.05f, -1);
+            vanillaButtonManager.UsesText.transform.localScale = Vector3.one * 0.8f;
+            vanillaButtonManager.UsesText.text = "";
             return vanillaButtonManager;
         }
         public static void CustomMurderPlayer(this PlayerControl player, PlayerControl target)

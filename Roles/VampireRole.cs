@@ -28,7 +28,7 @@ namespace TownOfTrailay.Roles
         public override void OnRoleAdded()
         {
             Timer = BiteCooldown;
-            Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "", TOUAssets.Bite, new Action(delegate
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "", TOTAssets.Bite, new Action(delegate
             {
                 if (CurrentTarget != null && Timer <= 0)
                 {

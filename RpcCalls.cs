@@ -10,5 +10,6 @@ namespace TownOfTrailay
         RpcRewind,
         RpcDisguise,
         RpcPoison,
+        RpcSwapTeam,
     }
 }

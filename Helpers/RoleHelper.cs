@@ -31,7 +31,7 @@ namespace TownOfTrailay.Helpers
                 {
                     KillButton = HudManager.Instance.KillButton.renderer.sprite;
                 }
-                HudManager.Instance.KillButton.renderer.sprite = PlayerControl.LocalPlayer.Data.myRole is ClutchRole ? TOUAssets.ClutchKill : KillButton;
+                HudManager.Instance.KillButton.renderer.sprite = PlayerControl.LocalPlayer.Data.myRole is ClutchRole ? TOTAssets.ClutchKill : KillButton;
             }
         }
         public void TimeMasterUpdate()

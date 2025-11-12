@@ -17,18 +17,26 @@
 
 	<ItemGroup>
 	  <None Remove="Assets\bite.png" />
+	  <None Remove="Assets\choose.png" />
 	  <None Remove="Assets\clock.png" />
 	  <None Remove="Assets\clutchKill.png" />
+	  <None Remove="Assets\helperCard.png" />
 	  <None Remove="Assets\mimic.png" />
 	  <None Remove="Assets\poison.png" />
+	  <None Remove="Assets\traitorCard.png" />
+	  <None Remove="Assets\usesCounter.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Assets\bite.png" />
+	  <EmbeddedResource Include="Assets\choose.png" />
 	  <EmbeddedResource Include="Assets\clock.png" />
 	  <EmbeddedResource Include="Assets\clutchKill.png" />
+	  <EmbeddedResource Include="Assets\helperCard.png" />
 	  <EmbeddedResource Include="Assets\mimic.png" />
 	  <EmbeddedResource Include="Assets\poison.png" />
+	  <EmbeddedResource Include="Assets\traitorCard.png" />
+	  <EmbeddedResource Include="Assets\usesCounter.png" />
 	</ItemGroup>
 
 	<ItemGroup>

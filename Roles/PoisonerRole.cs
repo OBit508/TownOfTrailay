@@ -23,7 +23,7 @@ namespace TownOfTrailay.Roles
         {
             BiteCooldown = PoisonCooldown;
             Timer = BiteCooldown;
-            Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Poison", TOUAssets.Poison, new Action(delegate
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Poison", TOTAssets.Poison, new Action(delegate
             {
                 if (CurrentTarget != null && Timer <= 0)
                 {

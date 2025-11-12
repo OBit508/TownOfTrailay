@@ -15,7 +15,7 @@ namespace TownOfTrailay
         public static Harmony Harmony = new Harmony("rafael.newroles.com");
         public static void Load()
         {
-            TOUAssets.LoadAssets();
+            TOTAssets.LoadAssets();
             AddRole<BaitRole>();
             AddRole<ClutchRole>();
             AddRole<CrewpostorRole>();

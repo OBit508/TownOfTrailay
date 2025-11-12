@@ -18,6 +18,7 @@ namespace TownOfTrailay.Roles
         public bool Disguised;
         public float MimicCooldown = 10;
         public float MimicDuration = 10;
+        public PlayerPickMenu Menu;
         public VanillaButtonManager Button;
         public float Timer;
         public override string roleDisplayName => "The Glitch";
@@ -31,7 +32,7 @@ namespace TownOfTrailay.Roles
         }
         public override void OnRoleAdded()
         {
-            Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Mimic", TOUAssets.Mimic, new Action(CreateMenu));
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Mimic", TOTAssets.Mimic, new Action(CreateMenu));
             Timer = MimicCooldown;
         }
         public void Update()
@@ -64,7 +65,7 @@ namespace TownOfTrailay.Roles
         }
         public void CreateMenu()
         {
-            if (Timer <= 0 && !Disguised)
+            if (Menu == null && Timer <= 0 && !Disguised)
             {
                 List<PlayerPickOption> options = new List<PlayerPickOption>();
                 foreach (GameData.PlayerInfo target in GameData.Instance.AllPlayers)

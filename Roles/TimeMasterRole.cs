@@ -25,7 +25,7 @@ namespace TownOfTrailay.Roles
         public override void OnRoleAdded()
         {
             Timer = RewindCooldown;
-            Button = Utils.Create(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Rewind", TOUAssets.Clock, delegate
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Rewind", TOTAssets.Clock, delegate
             {
                 if (!RoleHelper.RewindActive && Timer <= 0 && RoleHelper.GlobalPoints.Count >= RoleHelper.MaxPoints)
                 {
