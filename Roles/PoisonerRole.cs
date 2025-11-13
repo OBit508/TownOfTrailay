@@ -11,7 +11,8 @@ namespace TownOfTrailay.Roles
     {
         public override string roleDisplayName => "Poisoner";
         public override string roleDescription => "You can poison others";
-        public float PoisonCooldown = 10;
+        public float PoisonCooldown = 30;
+        public new float KillDelay = 10;
         public override void ConfigureRole()
         {
             RoleTeamType = RoleTeamTypes.Impostor;
@@ -22,6 +23,7 @@ namespace TownOfTrailay.Roles
         public override void OnRoleAdded()
         {
             BiteCooldown = PoisonCooldown;
+            base.KillDelay = KillDelay;
             Timer = BiteCooldown;
             Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Poison", TOTAssets.Poison, new Action(delegate
             {
