@@ -16,8 +16,8 @@ namespace TownOfTrailay.Roles
         public override string roleDisplayName => "Vampire";
         public override string roleDescription => "You can bite others";
         public VanillaButtonManager Button;
-        public float BiteCooldown = 10;
-        public float KillDelay = 20;
+        public float BiteCooldown = 30;
+        public float KillDelay = 10;
         public float Timer;
         public PlayerControl CurrentTarget;
         public override void ConfigureRole()
