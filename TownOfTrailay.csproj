@@ -449,8 +449,6 @@
 	  <None Remove="Assets\Hats\strings\крылья.json" />
 	  <None Remove="Assets\Hats\strings\ОБуШа.json" />
 	  <None Remove="Assets\helperCard.png" />
-	  <None Remove="Assets\Maps\Polus\Description.json" />
-	  <None Remove="Assets\Maps\Polus\LIMapLogo.png" />
 	  <None Remove="Assets\mimic.png" />
 	  <None Remove="Assets\poison.png" />
 	  <None Remove="Assets\traitorCard.png" />
@@ -891,9 +889,6 @@
 	  <EmbeddedResource Include="Assets\Hats\strings\крылья.json" />
 	  <EmbeddedResource Include="Assets\Hats\strings\ОБуШа.json" />
 	  <EmbeddedResource Include="Assets\helperCard.png" />
-	  <EmbeddedResource Include="Assets\Maps\Polus\Description.json" />
-	  <EmbeddedResource Include="Assets\Maps\Polus\LIMapLogo.png" />
-	  <EmbeddedResource Include="Assets\Maps\Polus\Map.lim2" />
 	  <EmbeddedResource Include="Assets\mimic.png" />
 	  <EmbeddedResource Include="Assets\poison.png" />
 	  <EmbeddedResource Include="Assets\traitorCard.png" />

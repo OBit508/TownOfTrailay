@@ -4,34 +4,33 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
+using TMPro;
 using UnityEngine;
+using static TownOfTrailay.Helpers.Features.CosmeticLoaderManager;
 
 namespace TownOfTrailay.Helpers.Features
 {
     internal static class CosmeticLoaderManager
     {
-        public static void LoadCosmetics()
+        public static System.Collections.IEnumerator LoadCosmetics(TextMeshPro text, string baseStr)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             List<string> resourceNames = assembly.GetManifestResourceNames().Where(name => name.StartsWith("TownOfTrailay.Assets.Hats.strings.") && name.EndsWith(".json")).ToList();
-            List<HatData> hatList = new List<HatData>();
-            foreach (string jsonFile in resourceNames)
+            int originalCount = resourceNames.Count;
+            while (resourceNames.Count > 0)
             {
                 try
                 {
-                    hatList.Add(JsonUtility.FromJson<HatData>(new StreamReader(assembly.GetManifestResourceStream(jsonFile)).ReadToEnd()));
-                }
-                catch { }
-            }
-            foreach (HatData hatData in hatList)
-            {
-                try
-                {
+                    HatData hatData = JsonUtility.FromJson<HatData>(new StreamReader(assembly.GetManifestResourceStream(resourceNames[0])).ReadToEnd());
                     MemoryStream stream = new MemoryStream();
                     assembly.GetManifestResourceStream(hatData.ImagePath.Replace("resources/images/", "TownOfTrailay.Assets.Hats.images.")).CopyTo(stream);
                     AddHat(hatData, ImageUtils.LoadFromRawImage(stream.ToArray(), 300f / hatData.Size, SpriteMeshType.FullRect));
                 }
                 catch { }
+                text.text = baseStr + ((originalCount - resourceNames.Count) * 100 / originalCount).ToString() + "%";
+                resourceNames.RemoveAt(0);
+                yield return null;
             }
         }
         [Serializable]

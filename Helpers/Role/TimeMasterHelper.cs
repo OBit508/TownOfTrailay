@@ -1,47 +1,27 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TownOfTrailay.Assets;
-using TownOfTrailay.Roles;
 using UnityEngine;
 using static TownOfTrailay.Roles.TimeMasterRole;
+using static UnityEngine.PlayerLoop.PreUpdate;
 
 namespace TownOfTrailay.Helpers.Role
 {
-    internal class RoleHelper : MonoBehaviour
+    public class TimeMasterHelper : HelperManager.Helper
     {
         public static SpriteRenderer Background;
         public static List<TimePoint> GlobalPoints = new List<TimePoint>();
         public static bool RewindActive;
         public static bool LastShipCheck;
         public static int MaxPoints = 720;
-        public static Sprite KillButton;
-        public static bool CanUpdate => AmongUsClient.Instance.IsGameStarted || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
-        public void Update()
-        {
-            TimeMasterUpdate();
-            UpdateButtonsSprite();
-        }
-        public void UpdateButtonsSprite()
-        {
-            if (CanUpdate && HudManager.Instance != null && PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data != null)
-            {
-                if (KillButton == null)
-                {
-                    KillButton = HudManager.Instance.KillButton.renderer.sprite;
-                }
-                HudManager.Instance.KillButton.renderer.sprite = PlayerControl.LocalPlayer.Data.myRole is ClutchRole ? TOTAssets.ClutchKill : KillButton;
-            }
-        }
-        public void TimeMasterUpdate()
+        public override void Update()
         {
             if (!LastShipCheck && ShipStatus.Instance != null && PlayerControl.LocalPlayer != null && PlayerControl.AllPlayerControls.Count > 0)
             {
                 GlobalPoints.Clear();
             }
             LastShipCheck = ShipStatus.Instance != null;
-            if (CanUpdate)
+            if (HelperManager.CanUpdate)
             {
                 if (!RewindActive)
                 {
@@ -66,7 +46,7 @@ namespace TownOfTrailay.Helpers.Role
                 }
                 if (Background == null && HudManager.Instance != null && HudManager.Instance.FullScreen != null)
                 {
-                    Background = Instantiate(HudManager.Instance.FullScreen, HudManager.Instance.FullScreen.transform.parent);
+                    Background = GameObject.Instantiate(HudManager.Instance.FullScreen, HudManager.Instance.FullScreen.transform.parent);
                     Background.transform.localPosition = new Vector3(0, 0, -751);
                     Background.color = new Color(0, 0, 1, 0.5f);
                 }

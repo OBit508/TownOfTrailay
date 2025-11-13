@@ -7,9 +7,10 @@ namespace TownOfTrailay.Helpers.Role
 {
     public class TOTBaseRole : RoleBehaviour
     {
+        public bool LocalPlayer => Player != null && Player.AmOwner;
         private void Start()
         {
-            if (Player.AmOwner)
+            if (LocalPlayer)
             {
                 OnRoleAdded();
             }
@@ -24,5 +25,6 @@ namespace TownOfTrailay.Helpers.Role
         {
 
         }
+
     }
 }

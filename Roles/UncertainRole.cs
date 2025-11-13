@@ -35,7 +35,7 @@ namespace TownOfTrailay.Roles
         }
         public void Update()
         {
-            if (Player.AmOwner)
+            if (LocalPlayer)
             {
                 if (Timer > 0)
                 {
