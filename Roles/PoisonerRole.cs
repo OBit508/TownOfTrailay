@@ -4,11 +4,13 @@ using System.Text;
 using TownOfTrailay.Assets;
 using TownOfTrailay.Helpers;
 using TownOfTrailay.Helpers.Utilities;
+using UnityEngine;
 
 namespace TownOfTrailay.Roles
 {
     public class PoisonerRole : VampireRole
     {
+        public override Color RoleColor => new Color32(197, 0, 255, byte.MaxValue);
         public override string roleDisplayName => "Poisoner";
         public override string roleDescription => "You can poison others";
         public float PoisonCooldown = 30;

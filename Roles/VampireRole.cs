@@ -13,6 +13,7 @@ namespace TownOfTrailay.Roles
     public class VampireRole : TOTBaseRole
     {
         public List<(PlayerControl player, ChangeableValue<float> timer)> Kills = new List<(PlayerControl player, ChangeableValue<float> timer)>();
+        public override Color RoleColor => new Color32(86, 30, 27, byte.MaxValue);
         public override string roleDisplayName => "Vampire";
         public override string roleDescription => "You can bite others";
         public VanillaButtonManager Button;
@@ -54,15 +55,16 @@ namespace TownOfTrailay.Roles
                 for (int i = Kills.Count - 1; i >= 0; i--)
                 {
                     (PlayerControl player, ChangeableValue<float> timer) pair = Kills[i];
-                    Kills.Remove(pair);
                     if (pair.player == null || pair.player.Data.IsDead)
                     {
+                        Kills.Remove(pair);
                         break;
                     }
                     pair.timer.Value -= Time.deltaTime;
                     if (pair.timer.Value <= 0)
                     {
-                        SendRpc(RpcCalls.RpcPoison, new Action<MessageWriter>(delegate (MessageWriter writer) { writer.WriteNetObject(CurrentTarget); }));
+                        Kills.Remove(pair);
+                        SendRpc(RpcCalls.RpcPoison, new Action<MessageWriter>(delegate (MessageWriter writer) { writer.WriteNetObject(pair.player); }));
                         Player.CustomMurderPlayer(pair.player);
                     }
                 }

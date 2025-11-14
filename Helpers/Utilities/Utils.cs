@@ -111,6 +111,10 @@ namespace TownOfTrailay.Helpers.Utilities
             vanillaButtonManager.UsesText.text = "";
             return vanillaButtonManager;
         }
+        public static void ReportDeadBody(this PlayerControl player, GameData.PlayerInfo target)
+        {
+            typeof(PlayerControl).GetMethod("ReportDeadBody", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(player, new object[] { target });
+        }
         public static void CustomMurderPlayer(this PlayerControl player, PlayerControl target)
         {
             if (AmongUsClient.Instance.IsGameOver)

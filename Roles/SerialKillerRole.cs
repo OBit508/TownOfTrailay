@@ -12,6 +12,8 @@ namespace TownOfTrailay.Roles
 {
     public class SerialKillerRole : TOTBaseRole
     {
+        public new float KillCooldown = 15;
+        public override Color RoleColor => new Color32(3, 90, 13, byte.MaxValue);
         public override string roleDisplayName => "Serial killer";
         public override string roleDescription => "You are Serial killer. kill everyone to win";
         public VanillaButtonManager Button;
@@ -25,12 +27,12 @@ namespace TownOfTrailay.Roles
         }
         public override void OnRoleAdded()
         {
-            Timer = KillCooldown + 15;
+            Timer = KillCooldown;
             Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, HudManager.Instance.KillButton.ButtonText.text, HudManager.Instance.KillButton.renderer.sprite, new Action(delegate
             {
                 if (CurrentTarget != null && Timer <= 0)
                 {
-                    Timer = KillCooldown + 15;
+                    Timer = KillCooldown;
                     Player.RpcMurderPlayer(CurrentTarget, MurderResultFlags.Succeeded);
                 }
             }));

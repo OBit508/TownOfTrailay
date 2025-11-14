@@ -13,6 +13,7 @@ namespace TownOfTrailay.Roles
 {
     public class UncertainRole : TOTBaseRole
     {
+        public override Color RoleColor => new Color32(174, 3, 81, byte.MaxValue);
         public override string roleDescription => "You are Uncertain. You can either help other impostors or be Traitor and make them lose.";
         public override string roleDisplayName => "Uncertain";
         public PlayerPickMenu Menu;

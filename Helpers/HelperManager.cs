@@ -14,7 +14,7 @@ namespace TownOfTrailay.Helpers
     public class HelperManager : MonoBehaviour
     {
         public static HelperManager Instance;
-        private static List<Helper> Helpers = new List<Helper>() { new TimeMasterHelper(), new ClutchHelper(), new LoadHelper() };
+        private static List<Helper> Helpers = new List<Helper>() { new TimeMasterHelper(), new ClutchHelper(), new LoadHelper(), new TOTRoleManager.NameHelper() };
         public static bool CanUpdate => AmongUsClient.Instance.IsGameStarted || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
         public void Awake()
         {

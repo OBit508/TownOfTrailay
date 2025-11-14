@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Text;
 using TMPro;
 using TownOfTrailay.Helpers.Role;
+using TownOfTrailay.Helpers.Utilities;
+using TownOfTrailay.Roles;
 using UnityEngine;
 
 namespace TownOfTrailay.Helpers.Features
@@ -14,7 +16,7 @@ namespace TownOfTrailay.Helpers.Features
         public static System.Collections.IEnumerator LoadRoles(TextMeshPro text, string baseStr)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            List<Type> roles = assembly.GetTypes().ToList().FindAll(t => t.IsAssignableFrom(typeof(RoleBehaviour)) && t != typeof(TOTBaseRole));
+            List<Type> roles = new List<Type>() { typeof(BaitRole), typeof(ClutchRole), typeof(CrewpostorRole), typeof(HunterRole), typeof(PoisonerRole), typeof(SabotagerRole), typeof(SerialKillerRole), typeof(TheGlitchRole), typeof(TimeMasterRole), typeof(UncertainRole), typeof(VampireRole) };
             int originalCount = roles.Count;
             while (roles.Count > 0)
             {
@@ -61,6 +63,29 @@ namespace TownOfTrailay.Helpers.Features
                 Debug.LogError("Failed to configure role: " + ex);
             }
             RoleManager.Instance.allRoles.Add(val);
+        }
+        public static Color GetColor(this RoleBehaviour role)
+        {
+            if (role is TOTBaseRole r)
+            {
+                return r.RoleColor;
+            }
+            return role.RoleTeamType == RoleTeamTypes.Crewmate ? Color.cyan : role.TeamColor;
+        }
+        public class NameHelper : HelperManager.Helper
+        {
+            public override void Update()
+            {
+                foreach (PlayerControl player in PlayerControl.AllPlayerControls)
+                {
+                    if (player.AmOwner || player.Data.myRole.RoleTeamType == RoleTeamTypes.Impostor && PlayerControl.LocalPlayer.Data.myRole.RoleTeamType == RoleTeamTypes.Impostor)
+                    {
+                        string timeMasterText = (player.Data.myRole is TimeMasterRole ? "Time points: " + TimeMasterHelper.GlobalPoints.Count.ToString() + " (" + (TimeMasterHelper.RewindActive ? "<color=#0000ff>Active</color>" : TimeMasterHelper.GlobalPoints.Count < TimeMasterHelper.MaxPoints ? "<color=#ff0000>Loading</color>" : "<color=#28ba00>Loaded</color>") + ")\n" : "");
+                        player.PrivateSetName("<size=1.7><color=#" + player.Data.myRole.GetColor().ToHex() + ">" + player.Data.myRole.roleDisplayName + "</color></size>\n" + timeMasterText + "<color=#ffffff>" + player.name + "</color>");
+                        player.nameText.transform.SetY(0.65f + (player.Data.myRole is TimeMasterRole ? 0.3f : 0.15f));
+                    }
+                }
+            }
         }
     }
 }

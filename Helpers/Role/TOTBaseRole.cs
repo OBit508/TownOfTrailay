@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 namespace TownOfTrailay.Helpers.Role
 {
     public class TOTBaseRole : RoleBehaviour
     {
+        public virtual Color RoleColor => Color.white;
         public bool LocalPlayer => Player != null && Player.AmOwner;
         private void Start()
         {

@@ -12,6 +12,7 @@ namespace TownOfTrailay.Roles
 {
     public class TimeMasterRole : TOTBaseRole
     {
+        public override Color RoleColor => new Color32(0, 20, 163, byte.MaxValue);
         public override string roleDisplayName => "Time Master";
         public override string roleDescription => "You can rewind the time";
         public VanillaButtonManager Button;
@@ -52,7 +53,6 @@ namespace TownOfTrailay.Roles
                 }
                 Button.CooldownText.text = Timer > 0 && !TimeMasterHelper.RewindActive ? ((int)Timer).ToString() : "";
                 Button.spriteRender.color = TimeMasterHelper.RewindActive ? Palette.DisabledGrey : Color.white;
-                Player.PrivateSetName("Time points: " + TimeMasterHelper.GlobalPoints.Count.ToString() + " (" + (TimeMasterHelper.RewindActive ? "<color=#0000ff>Active</color>" : TimeMasterHelper.GlobalPoints.Count < TimeMasterHelper.MaxPoints ? "<color=#ff0000>Loading</color>" : "<color=#28ba00>Loaded</color>") + ")\n" + Player.name);
             }
         }
         public override void HandleRpc(MessageReader reader, int rpc)

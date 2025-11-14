@@ -1,12 +1,14 @@
 ﻿using System.Linq;
+using TownOfTrailay.Helpers.Role;
 using TownOfTrailay.Helpers.Utilities;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 namespace TownOfTrailay.Roles
 {
-    public class SabotagerRole : RoleBehaviour
+    public class SabotagerRole : TOTBaseRole
     {
+        public override Color RoleColor => Palette.ImpostorRed;
         public override string roleDisplayName => "Sabotager";
         public override string roleDescription => "You are Sabotager. Sabotage and kill.";
         public override void ConfigureRole()

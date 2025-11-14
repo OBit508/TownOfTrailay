@@ -17,6 +17,8 @@ namespace TownOfTrailay.Assets
         public static Sprite Choose;
         public static Sprite HelperCard;
         public static Sprite TraitorCard;
+        public static AudioClip BaitSound;
+        public static AudioClip BiteSound;
         public static void LoadAssets()
         {
             Clock = Utils.LoadSprite("TownOfTrailay.Assets.clock.png", 75);
