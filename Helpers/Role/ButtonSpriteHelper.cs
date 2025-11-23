@@ -8,7 +8,7 @@ using static UnityEngine.PlayerLoop.PreUpdate;
 
 namespace TownOfTrailay.Helpers.Role
 {
-    public class ClutchHelper : HelperManager.Helper
+    public class ButtonSpriteHelper : HelperManager.Helper
     {
         public static Sprite KillButton;
         public override void Update()
@@ -19,7 +19,12 @@ namespace TownOfTrailay.Helpers.Role
                 {
                     KillButton = HudManager.Instance.KillButton.renderer.sprite;
                 }
-                HudManager.Instance.KillButton.renderer.sprite = PlayerControl.LocalPlayer.Data.myRole is ClutchRole ? TOTAssets.ClutchKill : KillButton;
+                RoleBehaviour role = PlayerControl.LocalPlayer.Data.myRole;
+                HudManager.Instance.KillButton.renderer.sprite = role is ClutchRole ? TOTAssets.ClutchKill : (role is SheriffRole || role is HunterRole ? TOTAssets.YellowKill : role is PelicanRole ? TOTAssets.Eat : KillButton);
+                if (role is DraggerRole dragger)
+                {
+                    dragger.dragButton.spriteRender.sprite = TOTAssets.Drag;
+                }
             }
         }
     }

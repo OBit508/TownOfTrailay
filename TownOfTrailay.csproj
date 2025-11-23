@@ -20,6 +20,8 @@
 	  <None Remove="Assets\choose.png" />
 	  <None Remove="Assets\clock.png" />
 	  <None Remove="Assets\clutchKill.png" />
+	  <None Remove="Assets\Drag.png" />
+	  <None Remove="Assets\eat.png" />
 	  <None Remove="Assets\Hats\images\1.png" />
 	  <None Remove="Assets\Hats\images\10.png" />
 	  <None Remove="Assets\Hats\images\11.png" />
@@ -192,6 +194,7 @@
 	  <None Remove="Assets\poison.png" />
 	  <None Remove="Assets\traitorCard.png" />
 	  <None Remove="Assets\usesCounter.png" />
+	  <None Remove="Assets\yellowKill.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -199,6 +202,8 @@
 	  <EmbeddedResource Include="Assets\choose.png" />
 	  <EmbeddedResource Include="Assets\clock.png" />
 	  <EmbeddedResource Include="Assets\clutchKill.png" />
+	  <EmbeddedResource Include="Assets\drag.png" />
+	  <EmbeddedResource Include="Assets\eat.png" />
 	  <EmbeddedResource Include="Assets\Hats\images\1.png" />
 	  <EmbeddedResource Include="Assets\Hats\images\10.png" />
 	  <EmbeddedResource Include="Assets\Hats\images\11.png" />
@@ -371,6 +376,7 @@
 	  <EmbeddedResource Include="Assets\poison.png" />
 	  <EmbeddedResource Include="Assets\traitorCard.png" />
 	  <EmbeddedResource Include="Assets\usesCounter.png" />
+	  <EmbeddedResource Include="Assets\yellowKill.png" />
 	</ItemGroup>
 
 	<ItemGroup>

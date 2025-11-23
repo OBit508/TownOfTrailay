@@ -81,7 +81,7 @@ namespace TownOfTrailay.Helpers.Features
                     if (player.AmOwner || player.Data.myRole.RoleTeamType == RoleTeamTypes.Impostor && PlayerControl.LocalPlayer.Data.myRole.RoleTeamType == RoleTeamTypes.Impostor)
                     {
                         string timeMasterText = (player.Data.myRole is TimeMasterRole ? "Time points: " + TimeMasterHelper.GlobalPoints.Count.ToString() + " (" + (TimeMasterHelper.RewindActive ? "<color=#0000ff>Active</color>" : TimeMasterHelper.GlobalPoints.Count < TimeMasterHelper.MaxPoints ? "<color=#ff0000>Loading</color>" : "<color=#28ba00>Loaded</color>") + ")\n" : "");
-                        player.PrivateSetName("<size=1.7><color=#" + player.Data.myRole.GetColor().ToHex() + ">" + player.Data.myRole.roleDisplayName + "</color></size>\n" + timeMasterText + "<color=#ffffff>" + player.name + "</color>");
+                        player.PrivateSetName("<size=2><color=#" + player.Data.myRole.GetColor().ToHex() + ">" + player.Data.myRole.roleDisplayName + "</color></size>\n" + timeMasterText + "<color=#ffffff>" + player.name + "</color>");
                         player.nameText.transform.SetY(0.65f + (player.Data.myRole is TimeMasterRole ? 0.3f : 0.15f));
                     }
                 }

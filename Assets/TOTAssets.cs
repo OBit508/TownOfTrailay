@@ -17,8 +17,9 @@ namespace TownOfTrailay.Assets
         public static Sprite Choose;
         public static Sprite HelperCard;
         public static Sprite TraitorCard;
-        public static AudioClip BaitSound;
-        public static AudioClip BiteSound;
+        public static Sprite Drag;
+        public static Sprite Eat;
+        public static Sprite YellowKill;
         public static void LoadAssets()
         {
             Clock = Utils.LoadSprite("TownOfTrailay.Assets.clock.png", 75);
@@ -30,6 +31,9 @@ namespace TownOfTrailay.Assets
             Choose = Utils.LoadSprite("TownOfTrailay.Assets.choose.png", 100);
             HelperCard = Utils.LoadSprite("TownOfTrailay.Assets.helperCard.png", 100);
             TraitorCard = Utils.LoadSprite("TownOfTrailay.Assets.traitorCard.png", 100);
+            Drag = Utils.LoadSprite("TownOfTrailay.Assets.drag.png", 100);
+            Eat = Utils.LoadSprite("TownOfTrailay.Assets.eat.png", 100);
+            YellowKill = Utils.LoadSprite("TownOfTrailay.Assets.yellowKill.png", 100);
         }
     }
 }
