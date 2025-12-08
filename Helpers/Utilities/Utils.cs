@@ -115,7 +115,7 @@ namespace TownOfTrailay.Helpers.Utilities
         {
             typeof(PlayerControl).GetMethod("ReportDeadBody", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(player, new object[] { target });
         }
-        public static void CustomMurderPlayer(this PlayerControl player, PlayerControl target)
+        public static void CustomMurderPlayer(this PlayerControl player, PlayerControl target, bool resetKillTimer = true, bool createDeadBody = true, bool teleportMurderer = true, bool showKillAnim = true, bool playKillSound = true)
         {
             if (AmongUsClient.Instance.IsGameOver)
             {
@@ -127,12 +127,12 @@ namespace TownOfTrailay.Helpers.Utilities
                 StatsManager instance = StatsManager.Instance;
                 uint num = instance.ImpostorKills;
                 instance.ImpostorKills = num + 1U;
-                if (Constants.ShouldPlaySfx())
+                if (Constants.ShouldPlaySfx() && playKillSound)
                 {
                     SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f, false);
                 }
             }
-            if (player.Data.myRole)
+            if (player.Data.myRole && resetKillTimer)
             {
                 player.Data.myRole.SetKillTimer(player.Data.myRole.KillCooldown);
             }
@@ -148,12 +148,15 @@ namespace TownOfTrailay.Helpers.Utilities
                     Minigame.Instance.Close();
                     Minigame.Instance.Close();
                 }
-                DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(player.Data, data);
+                if (showKillAnim)
+                {
+                    DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(player.Data, data);
+                }
                 DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(false);
                 target.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
                 target.RpcSetScanner(false);
             }
-            player.MyPhysics.StartCoroutine(CoPerformKill(player.KillAnimations.Random<KillAnimation>(), player, target));
+            player.MyPhysics.StartCoroutine(CoPerformKill(player.KillAnimations.Random<KillAnimation>(), player, target, resetKillTimer, createDeadBody, teleportMurderer, showKillAnim, playKillSound));
             RoleBehaviour myRole = player.Data.myRole;
             if (myRole == null)
             {
@@ -161,21 +164,40 @@ namespace TownOfTrailay.Helpers.Utilities
             }
             myRole.OnMurder(target);
         }
-        private static IEnumerator CoPerformKill(KillAnimation anim, PlayerControl source, PlayerControl target)
+
+        public static System.Collections.IEnumerator CoPerformKill(KillAnimation killAnimation, PlayerControl source, PlayerControl target, bool resetKillTimer = true, bool createDeadBody = true, bool teleportMurderer = true, bool showKillAnim = true, bool playKillSound = true)
         {
             bool isParticipant = PlayerControl.LocalPlayer == source || PlayerControl.LocalPlayer == target;
             PlayerPhysics sourcePhys = source.MyPhysics;
+            KillAnimation.SetMovement(source, false);
+            KillAnimation.SetMovement(target, false);
+            if (isParticipant)
+            {
+                Camera.main.GetComponent<FollowerCamera>().Locked = true;
+            }
             target.Die(DeathReason.Kill, source);
             SpriteAnim sourceAnim = source.myRend.GetComponent<SpriteAnim>();
-            yield return new WaitForAnimationFinish(sourceAnim, anim.BlurAnim);
+            yield return new WaitForAnimationFinish(sourceAnim, killAnimation.BlurAnim);
+            if (teleportMurderer)
+            {
+                source.NetTransform.SnapTo(target.transform.position);
+            }
             sourceAnim.Play(sourcePhys.IdleAnim, 1f);
             KillAnimation.SetMovement(source, true);
-            DeadBody deadBody = global::UnityEngine.Object.Instantiate<DeadBody>(anim.bodyPrefab);
-            Vector3 vector = target.transform.position + anim.BodyOffset;
-            vector.z = vector.y / 1000f;
-            deadBody.transform.position = vector;
-            deadBody.ParentId = target.PlayerId;
-            target.SetPlayerMaterialColors(deadBody.MyRend);
+            if (createDeadBody)
+            {
+                DeadBody deadBody = global::UnityEngine.Object.Instantiate<DeadBody>(killAnimation.bodyPrefab);
+                Vector3 vector = target.transform.position + killAnimation.BodyOffset;
+                vector.z = vector.y / 1000f;
+                deadBody.transform.position = vector;
+                deadBody.ParentId = target.PlayerId;
+                target.SetPlayerMaterialColors(deadBody.MyRend);
+            }
+            KillAnimation.SetMovement(target, true);
+            if (isParticipant)
+            {
+                Camera.main.GetComponent<FollowerCamera>().Locked = false;
+            }
             yield break;
         }
     }

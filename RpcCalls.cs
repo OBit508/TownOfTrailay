@@ -9,7 +9,7 @@ namespace TownOfTrailay
         RpcCheckRewind,
         RpcRewind,
         RpcDisguise,
-        RpcPoison,
         RpcSwapTeam,
+        RpcCustomMurder
     }
 }

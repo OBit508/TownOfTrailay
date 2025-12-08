@@ -64,8 +64,7 @@ namespace TownOfTrailay.Roles
                     if (pair.timer.Value <= 0)
                     {
                         Kills.Remove(pair);
-                        SendRpc(RpcCalls.RpcPoison, new Action<MessageWriter>(delegate (MessageWriter writer) { writer.WriteNetObject(pair.player); }));
-                        Player.CustomMurderPlayer(pair.player);
+                        Player.RpcCustomMurder(pair.player, MurderResultFlags.Succeeded, true, true, false);
                     }
                 }
             }
@@ -88,15 +87,6 @@ namespace TownOfTrailay.Roles
             }
             Button.spriteRender.color = Palette.DisabledColor;
             Button.spriteRender.material.SetFloat("_Desat", 1f);
-        }
-        public override void HandleRpc(MessageReader reader, int rpc)
-        {
-            switch ((RpcCalls)rpc)
-            {
-                case RpcCalls.RpcPoison:
-                    Player.CustomMurderPlayer(reader.ReadNetObject<PlayerControl>());
-                    break;
-            }
         }
     }
 }
