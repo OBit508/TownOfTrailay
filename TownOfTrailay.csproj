@@ -83,6 +83,7 @@
 	  <None Remove="Assets\Hats\strings\TrailaySkin.json" />
 	  <None Remove="Assets\Hats\strings\VoteMe.json" />
 	  <None Remove="Assets\helperCard.png" />
+	  <None Remove="Assets\juggerKill.png" />
 	  <None Remove="Assets\mimic.png" />
 	  <None Remove="Assets\poison.png" />
 	  <None Remove="Assets\traitorCard.png" />
@@ -158,6 +159,7 @@
 	  <EmbeddedResource Include="Assets\Hats\strings\TrailaySkin.json" />
 	  <EmbeddedResource Include="Assets\Hats\strings\VoteMe.json" />
 	  <EmbeddedResource Include="Assets\helperCard.png" />
+	  <EmbeddedResource Include="Assets\juggerKill.png" />
 	  <EmbeddedResource Include="Assets\mimic.png" />
 	  <EmbeddedResource Include="Assets\poison.png" />
 	  <EmbeddedResource Include="Assets\traitorCard.png" />

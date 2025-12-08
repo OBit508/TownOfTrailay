@@ -16,7 +16,7 @@ namespace TownOfTrailay.Helpers.Features
         public static System.Collections.IEnumerator LoadRoles(TextMeshPro text, string baseStr)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            List<Type> roles = new List<Type>() { typeof(BaitRole), typeof(ClutchRole), typeof(CrewpostorRole), typeof(HunterRole), typeof(PoisonerRole), typeof(SabotagerRole), typeof(SerialKillerRole), typeof(TheGlitchRole), typeof(TimeMasterRole), typeof(UncertainRole), typeof(VampireRole) };
+            List<Type> roles = new List<Type>() { typeof(BaitRole), typeof(ClutchRole), typeof(CrewpostorRole), typeof(HunterRole), typeof(JuggernautRole), typeof(PoisonerRole), typeof(SabotagerRole), typeof(SerialKillerRole), typeof(TheGlitchRole), typeof(TimeMasterRole), typeof(UncertainRole), typeof(VampireRole) };
             int originalCount = roles.Count;
             while (roles.Count > 0)
             {

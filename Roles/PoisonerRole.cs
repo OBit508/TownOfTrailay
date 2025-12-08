@@ -13,8 +13,8 @@ namespace TownOfTrailay.Roles
         public override Color RoleColor => new Color32(197, 0, 255, byte.MaxValue);
         public override string roleDisplayName => "Poisoner";
         public override string roleDescription => "You can poison others";
-        public float PoisonCooldown = 30;
-        public new float KillDelay = 10;
+        public float PoisonCooldown = 45;
+        public new float KillDelay = 15;
         public override void ConfigureRole()
         {
             RoleTeamType = RoleTeamTypes.Impostor;

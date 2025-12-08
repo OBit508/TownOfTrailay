@@ -16,7 +16,7 @@ namespace TownOfTrailay.Roles
     public class TheGlitchRole : TOTBaseRole
     {
         public bool Disguised;
-        public float MimicCooldown = 10;
+        public float MimicCooldown = 30;
         public float MimicDuration = 10;
         public PlayerPickMenu Menu;
         public VanillaButtonManager Button;
@@ -27,7 +27,7 @@ namespace TownOfTrailay.Roles
         public override void ConfigureRole()
         {
             RoleTeamType = RoleTeamTypes.Neutral;
-            enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Crewmate, RoleTeamTypes.Impostor };
+            enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Crewmate, RoleTeamTypes.Impostor, RoleTeamTypes.Neutral };
             CanUseKillButton = true;
             CanVent = true;
         }

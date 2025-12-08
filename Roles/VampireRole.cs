@@ -24,7 +24,7 @@ namespace TownOfTrailay.Roles
         public override void ConfigureRole()
         {
             RoleTeamType = RoleTeamTypes.Neutral;
-            enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Impostor, RoleTeamTypes.Crewmate };
+            enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Impostor, RoleTeamTypes.Crewmate, RoleTeamTypes.Neutral };
         }
         public override void OnRoleAdded()
         {

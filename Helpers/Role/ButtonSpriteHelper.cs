@@ -20,7 +20,7 @@ namespace TownOfTrailay.Helpers.Role
                     KillButton = HudManager.Instance.KillButton.renderer.sprite;
                 }
                 RoleBehaviour role = PlayerControl.LocalPlayer.Data.myRole;
-                HudManager.Instance.KillButton.renderer.sprite = role is ClutchRole ? TOTAssets.ClutchKill : (role is SheriffRole || role is HunterRole ? TOTAssets.YellowKill : role is PelicanRole ? TOTAssets.Eat : KillButton);
+                HudManager.Instance.KillButton.renderer.sprite = role is ClutchRole ? TOTAssets.ClutchKill : (role is SheriffRole || role is HunterRole ? TOTAssets.YellowKill : role is JuggernautRole  ? TOTAssets.JuggerKill : role is PelicanRole ? TOTAssets.Eat : KillButton);
                 if (role is DraggerRole dragger)
                 {
                     dragger.dragButton.spriteRender.sprite = TOTAssets.Drag;
