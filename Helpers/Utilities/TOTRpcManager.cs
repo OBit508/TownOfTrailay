@@ -29,6 +29,7 @@ namespace TownOfTrailay.Helpers.Utilities
                 }
                 SendRpc(delegate (MessageWriter messageWriter)
                 {
+                    messageWriter.Write((int)RpcCalls.RpcCustomMurder);
                     messageWriter.WriteNetObject(target);
                     messageWriter.Write(resetKillTimer);
                     messageWriter.Write(createDeadBody);
