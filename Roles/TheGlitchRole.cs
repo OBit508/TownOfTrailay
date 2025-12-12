@@ -21,7 +21,7 @@ namespace TownOfTrailay.Roles
         public PlayerPickMenu Menu;
         public VanillaButtonManager Button;
         public float Timer;
-        public override Color RoleColor => new Color32(0, 255, 53, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(0, 255, 53, byte.MaxValue);
         public override string roleDisplayName => "The Glitch";
         public override string roleDescription => "The Glitch\nMimic into others and kill.";
         public override void ConfigureRole()

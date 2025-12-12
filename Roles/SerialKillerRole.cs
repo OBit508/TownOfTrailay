@@ -12,7 +12,7 @@ namespace TownOfTrailay.Roles
 {
     public class SerialKillerRole : TOTBaseRole
     {
-        public override Color RoleColor => new Color32(3, 90, 13, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(3, 90, 13, byte.MaxValue);
         public override string roleDisplayName => "Serial killer";
         public override string roleDescription => "You are Serial killer. kill everyone to win";
         public override void ConfigureRole()

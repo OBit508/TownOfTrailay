@@ -13,7 +13,7 @@ namespace TownOfTrailay.Roles
     public class VampireRole : TOTBaseRole
     {
         public List<(PlayerControl player, ChangeableValue<float> timer)> Kills = new List<(PlayerControl player, ChangeableValue<float> timer)>();
-        public override Color RoleColor => new Color32(86, 30, 27, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(86, 30, 27, byte.MaxValue);
         public override string roleDisplayName => "Vampire";
         public override string roleDescription => "You can bite others";
         public VanillaButtonManager Button;

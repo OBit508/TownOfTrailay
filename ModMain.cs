@@ -16,11 +16,11 @@ namespace TownOfTrailay
 {
     public class ModMain
     {
-        public static Harmony Harmony = new Harmony("rafael.newroles.com");
+        public static Harmony Harmony = new Harmony("townoftrailay.gg");
         public static void Load()
         {
             TOTAssets.LoadAssets();
-            new GameObject("RoleHelper").AddComponent<HelperManager>().DontDestroy();
+            new GameObject("HelperManager").AddComponent<HelperManager>().DontDestroy();
             Harmony.PatchAll();
         }
     }

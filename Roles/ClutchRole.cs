@@ -10,7 +10,7 @@ namespace TownOfTrailay.Roles
     {
         public int alivePlayerCount = 0;
         private bool wasBelowThreshold = false;
-        public override Color RoleColor => new Color32(118, 0, 0, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(118, 0, 0, byte.MaxValue);
         public override string roleDisplayName => "Clutch";
         public override string roleDescription => "You are Clutch. You can kill and vent only if there are 7 or fewer people alive.";
         public override void ConfigureRole()

@@ -10,7 +10,7 @@ namespace TownOfTrailay.Roles
     {
         public static int RequiredKills = 3;
         private int killCount = 0;
-        public override Color RoleColor => new Color32(222, 168, 5, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(222, 168, 5, byte.MaxValue);
         public override string roleDescription => "You are Hunter.";
         public override string roleDisplayName => "Hunter";
         public override void ConfigureRole()

@@ -8,7 +8,7 @@ namespace TownOfTrailay.Roles
 {
     public class SabotagerRole : TOTBaseRole
     {
-        public override Color RoleColor => Palette.ImpostorRed;
+        public override Color RoleColor { get; } = Palette.ImpostorRed;
         public override string roleDisplayName => "Sabotager";
         public override string roleDescription => "You are Sabotager. Sabotage and kill.";
         public override void ConfigureRole()

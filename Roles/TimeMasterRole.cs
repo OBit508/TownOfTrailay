@@ -12,7 +12,7 @@ namespace TownOfTrailay.Roles
 {
     public class TimeMasterRole : TOTBaseRole
     {
-        public override Color RoleColor => new Color32(0, 20, 163, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(0, 20, 163, byte.MaxValue);
         public override string roleDisplayName => "Time Master";
         public override string roleDescription => "You can rewind the time";
         public VanillaButtonManager Button;

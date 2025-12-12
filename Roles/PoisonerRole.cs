@@ -10,7 +10,7 @@ namespace TownOfTrailay.Roles
 {
     public class PoisonerRole : VampireRole
     {
-        public override Color RoleColor => new Color32(197, 0, 255, byte.MaxValue);
+        public override Color RoleColor { get; } = new Color32(197, 0, 255, byte.MaxValue);
         public override string roleDisplayName => "Poisoner";
         public override string roleDescription => "You can poison others";
         public float PoisonCooldown = 45;
