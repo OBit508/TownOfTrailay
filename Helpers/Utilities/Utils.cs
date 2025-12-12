@@ -121,46 +121,55 @@ namespace TownOfTrailay.Helpers.Utilities
             MedusaStatue statue = new GameObject(target.name + " - Statue").AddComponent<MedusaStatue>();
             statue.transform.position = target.transform.position;
             statue.transform.localScale = target.transform.localScale;
-            PlayerBody playerBody = GameObject.Instantiate<PlayerBody>(target.MyPhysics.CurBody, statue.transform);
-            statue.renderers.Add(playerBody.Rend);
-            playerBody.transform.position = target.MyPhysics.CurBody.transform.position;
-            DestroyAnimationComps(playerBody.transform);
-            SkinLayer skinLayer = GameObject.Instantiate<SkinLayer>(target.MyPhysics.Skin, statue.transform);
-            statue.renderers.Add(skinLayer.layer);
-            skinLayer.transform.position = target.MyPhysics.Skin.transform.position;
-            DestroyAnimationComps(skinLayer.transform);
-            SpriteRenderer hatRenderer = GameObject.Instantiate<SpriteRenderer>(target.HatRenderer, statue.transform);
-            statue.renderers.Add(hatRenderer);
-            hatRenderer.transform.position = target.HatRenderer.transform.position;
-            DestroyAnimationComps(hatRenderer.transform);
+            statue.colorId = target.Data.ColorId;
+            statue.BodyRender = new GameObject("BodyRend") 
+            { 
+                transform =
+                {
+                    parent = statue.transform,
+                    position = target.MyPhysics.CurBody.transform.position,
+                    localScale = target.MyPhysics.CurBody.transform.localScale
+                }
+            }.AddComponent<SpriteRenderer>();
+            statue.BodyRender.sprite = target.MyPhysics.CurBody.Rend.sprite;
+            statue.BodyRender.material = target.MyPhysics.CurBody.Rend.material;
+            statue.BodyRender.flipX = target.MyPhysics.CurBody.Rend.flipX;
+            Transform cosmeticParent = new GameObject("CosmeticParent") 
+            {
+                transform = 
+                { 
+                    parent = statue.transform,
+                    localPosition = Vector3.zero,
+                    localScale = Vector3.one * 0.5f
+                }
+            }.transform;
+            SpriteRenderer skinRend = new GameObject("SkinRend")
+            {
+                transform =
+                {
+                    parent = cosmeticParent,
+                    position = target.MyPhysics.Skin.transform.position,
+                    localScale = target.MyPhysics.Skin.transform.localScale
+                }
+            }.AddComponent<SpriteRenderer>();
+            skinRend.sprite = target.MyPhysics.Skin.layer.sprite;
+            skinRend.flipX = statue.BodyRender.flipX;
+            SpriteRenderer hatRend = new GameObject("HatRend")
+            {
+                transform =
+                {
+                    parent = cosmeticParent,
+                    position = target.HatRenderer.transform.position,
+                    localScale = target.HatRenderer.transform.localScale
+                }
+            }.AddComponent<SpriteRenderer>();
+            hatRend.sprite = target.HatRenderer.sprite;
+            hatRend.flipX = statue.BodyRender.flipX;
+            TextMeshPro nameText = GameObject.Instantiate<TextMeshPro>(target.transform.GetChild(2).GetComponent<TextMeshPro>(), statue.transform);
+            nameText.transform.position = target.transform.GetChild(2).position;
+            GameObject.Destroy(nameText.GetComponent<TextRenderer>());
+            nameText.text = target.Data.PlayerName + " - Statue";
             player.CustomMurderPlayer(target, true, false, false, false, false);
-        }
-        public static void DestroyAnimationComps(Transform transform)
-        {
-            if (transform.GetComponent<Animator>() != null)
-            {
-                GameObject.Destroy(transform.GetComponent<Animator>());
-            }
-            if (transform.GetComponent<SpriteAnim>() != null)
-            {
-                GameObject.Destroy(transform.GetComponent<SpriteAnim>());
-            }
-            if (transform.GetComponent<SpriteAnimNodes>() != null)
-            {
-                GameObject.Destroy(transform.GetComponent<SpriteAnimNodes>());
-            }
-            if (transform.GetComponent<PlayerBody>() != null)
-            {
-                GameObject.Destroy(transform.GetComponent<PlayerBody>());
-            }
-            if (transform.GetComponent<SpriteAnimNodeSync>() != null)
-            {
-                GameObject.Destroy(transform.GetComponent<SpriteAnimNodeSync>());
-            }
-            if (transform.GetComponent<SkinLayer>() != null)
-            {
-                GameObject.Destroy(transform.GetComponent<SkinLayer>());
-            }
         }
         public static void CustomMurderPlayer(this PlayerControl player, PlayerControl target, bool resetKillTimer = true, bool createDeadBody = true, bool teleportMurderer = true, bool showKillAnim = true, bool playKillSound = true)
         {
@@ -216,8 +225,11 @@ namespace TownOfTrailay.Helpers.Utilities
         {
             bool isParticipant = PlayerControl.LocalPlayer == source || PlayerControl.LocalPlayer == target;
             PlayerPhysics sourcePhys = source.MyPhysics;
-            KillAnimation.SetMovement(source, false);
-            KillAnimation.SetMovement(target, false);
+            if (teleportMurderer)
+            {
+                KillAnimation.SetMovement(source, false);
+                KillAnimation.SetMovement(target, false);
+            }
             if (isParticipant)
             {
                 Camera.main.GetComponent<FollowerCamera>().Locked = true;
@@ -230,7 +242,10 @@ namespace TownOfTrailay.Helpers.Utilities
                 source.NetTransform.SnapTo(target.transform.position);
             }
             sourceAnim.Play(sourcePhys.IdleAnim, 1f);
-            KillAnimation.SetMovement(source, true);
+            if (resetKillTimer)
+            {
+                KillAnimation.SetMovement(source, true);
+            }
             if (createDeadBody)
             {
                 DeadBody deadBody = global::UnityEngine.Object.Instantiate<DeadBody>(killAnimation.bodyPrefab);
@@ -240,7 +255,10 @@ namespace TownOfTrailay.Helpers.Utilities
                 deadBody.ParentId = target.PlayerId;
                 target.SetPlayerMaterialColors(deadBody.MyRend);
             }
-            KillAnimation.SetMovement(target, true);
+            if (teleportMurderer)
+            {
+                KillAnimation.SetMovement(target, true);
+            }
             if (isParticipant)
             {
                 Camera.main.GetComponent<FollowerCamera>().Locked = false;

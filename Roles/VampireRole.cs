@@ -80,7 +80,7 @@ namespace TownOfTrailay.Roles
             {
                 SpriteRenderer myRend = CurrentTarget.myRend;
                 myRend.material.SetFloat("_Outline", 1f);
-                myRend.material.SetColor("_OutlineColor", PlayerControl.LocalPlayer.Data.myRole.TeamColor);
+                myRend.material.SetColor("_OutlineColor", RoleColor);
                 Button.spriteRender.color = Palette.EnabledColor;
                 Button.spriteRender.material.SetFloat("_Desat", 0f);
                 return;

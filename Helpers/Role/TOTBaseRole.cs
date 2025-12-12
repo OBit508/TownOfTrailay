@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TownOfTrailay.Helpers.Utilities;
 using UnityEngine;
 
 namespace TownOfTrailay.Helpers.Role
@@ -28,6 +29,5 @@ namespace TownOfTrailay.Helpers.Role
         {
 
         }
-
     }
 }

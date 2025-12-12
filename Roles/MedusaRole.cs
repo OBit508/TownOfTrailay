@@ -14,7 +14,7 @@ namespace TownOfTrailay.Roles
     {
         public override Color RoleColor { get; } = new Color32(0, 99, 13, byte.MaxValue);
         public override string roleDisplayName => "Medusa";
-        public override string roleDescription => "You can petrify others";
+        public override string roleDescription => "You can petrify others.";
         public VanillaButtonManager Button;
         public float PetrifyCooldown = 25;
         public float Timer;
@@ -81,7 +81,7 @@ namespace TownOfTrailay.Roles
             {
                 SpriteRenderer myRend = CurrentTarget.myRend;
                 myRend.material.SetFloat("_Outline", 1f);
-                myRend.material.SetColor("_OutlineColor", PlayerControl.LocalPlayer.Data.myRole.TeamColor);
+                myRend.material.SetColor("_OutlineColor", RoleColor);
                 Button.spriteRender.color = Palette.EnabledColor;
                 Button.spriteRender.material.SetFloat("_Desat", 0f);
                 return;

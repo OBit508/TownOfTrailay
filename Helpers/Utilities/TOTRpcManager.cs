@@ -1,8 +1,12 @@
 ﻿using Hazel;
 using InnerNet;
+using MoonSharp.VsCodeDebugger.SDK;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TownOfTrailay.Helpers.Utilities
 {
@@ -40,6 +44,19 @@ namespace TownOfTrailay.Helpers.Utilities
                 return;
             }
         }
+        public static void RpcDestroy(this DeadBody deadBody)
+        {
+            byte id = deadBody.ParentId;
+            if (AmongUsClient.Instance.AmClient)
+            {
+                GameObject.Destroy(deadBody.gameObject);
+            }
+            SendRpc(delegate (MessageWriter messageWriter)
+            {
+                messageWriter.Write((int)RpcCalls.RpcDestroyDeadBody);
+                messageWriter.Write(id);
+            }, PlayerControl.LocalPlayer.NetId, byte.MaxValue, SendOption.Reliable);
+        }
         public static void HandleRpc(InnerNetObject innerNetObject, byte callId, MessageReader messageReader)
         {
             RpcCalls rpcCalls = (RpcCalls)messageReader.ReadInt32();
@@ -52,6 +69,15 @@ namespace TownOfTrailay.Helpers.Utilities
                 bool showKillAnim = messageReader.ReadBoolean();
                 bool playKillSound = messageReader.ReadBoolean();
                 player.CustomMurderPlayer(target, resetKillTimer, createDeadBody, teleportMurderer, showKillAnim, playKillSound);
+            }
+            else if (rpcCalls == RpcCalls.RpcDestroyDeadBody)
+            {
+                byte id = messageReader.ReadByte();
+                DeadBody body = GameObject.FindObjectsOfType<DeadBody>().FirstOrDefault((DeadBody deadBody) => deadBody.ParentId == id);
+                if (body != null)
+                {
+                    GameObject.Destroy(body.gameObject);
+                }
             }
         }
     }

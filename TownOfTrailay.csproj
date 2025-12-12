@@ -18,10 +18,12 @@
 	<ItemGroup>
 	  <None Remove="Assets\bite.png" />
 	  <None Remove="Assets\choose.png" />
+	  <None Remove="Assets\clean.png" />
 	  <None Remove="Assets\clock.png" />
 	  <None Remove="Assets\clutchKill.png" />
 	  <None Remove="Assets\Drag.png" />
 	  <None Remove="Assets\eat.png" />
+	  <None Remove="Assets\eatV.png" />
 	  <None Remove="Assets\Hats\images\Aura.png" />
 	  <None Remove="Assets\Hats\images\BlueHat.png" />
 	  <None Remove="Assets\Hats\images\Cat.png" />
@@ -86,6 +88,7 @@
 	  <None Remove="Assets\juggerKill.png" />
 	  <None Remove="Assets\mimic.png" />
 	  <None Remove="Assets\poison.png" />
+	  <None Remove="Assets\scavengerKill.png" />
 	  <None Remove="Assets\traitorCard.png" />
 	  <None Remove="Assets\usesCounter.png" />
 	  <None Remove="Assets\yellowKill.png" />
@@ -94,10 +97,12 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="Assets\bite.png" />
 	  <EmbeddedResource Include="Assets\choose.png" />
+	  <EmbeddedResource Include="Assets\clean.png" />
 	  <EmbeddedResource Include="Assets\clock.png" />
 	  <EmbeddedResource Include="Assets\clutchKill.png" />
 	  <EmbeddedResource Include="Assets\drag.png" />
 	  <EmbeddedResource Include="Assets\eat.png" />
+	  <EmbeddedResource Include="Assets\eatV.png" />
 	  <EmbeddedResource Include="Assets\Hats\images\Aura.png" />
 	  <EmbeddedResource Include="Assets\Hats\images\BlueHat.png" />
 	  <EmbeddedResource Include="Assets\Hats\images\Cat.png" />
@@ -162,6 +167,7 @@
 	  <EmbeddedResource Include="Assets\juggerKill.png" />
 	  <EmbeddedResource Include="Assets\mimic.png" />
 	  <EmbeddedResource Include="Assets\poison.png" />
+	  <EmbeddedResource Include="Assets\scavengerKill.png" />
 	  <EmbeddedResource Include="Assets\traitorCard.png" />
 	  <EmbeddedResource Include="Assets\usesCounter.png" />
 	  <EmbeddedResource Include="Assets\yellowKill.png" />

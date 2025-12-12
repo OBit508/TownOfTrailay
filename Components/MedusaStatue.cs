@@ -8,16 +8,19 @@ namespace TownOfTrailay.Components
 {
     public class MedusaStatue : MonoBehaviour
     {
+        public static Color Gray = Color.gray;
+        public static Color Gray2 = new Color(0.180f, 0.180f, 0.180f);
+        public static Color Gray3 = new Color(0.7f, 0.7f, 0.7f);
         public float AnimationTimer = 2;
-        public List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+        public SpriteRenderer BodyRender;
+        public int colorId;
         public System.Collections.IEnumerator Start()
         {
             for (float t = 0f; t < AnimationTimer; t += Time.deltaTime)
             {
-                foreach (SpriteRenderer rend in renderers)
-                {
-                    rend.color = Color.Lerp(Color.white, Color.black, t / AnimationTimer);
-                }
+                BodyRender.material.SetColor("_BackColor", Color.Lerp(Palette.ShadowColors[colorId], Gray2, t / AnimationTimer));
+                BodyRender.material.SetColor("_BodyColor", Color.Lerp(Palette.PlayerColors[colorId], Color.gray, t / AnimationTimer));
+                BodyRender.material.SetColor("_VisorColor", Color.Lerp(Palette.VisorColor, Gray3, t / AnimationTimer));
                 yield return null;
             }
         }

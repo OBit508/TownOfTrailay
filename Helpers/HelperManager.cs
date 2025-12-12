@@ -5,6 +5,7 @@ using System.Text;
 using TownOfTrailay.Assets;
 using TownOfTrailay.Helpers.Features;
 using TownOfTrailay.Helpers.Role;
+using TownOfTrailay.Helpers.Utilities;
 using TownOfTrailay.Roles;
 using UnityEngine;
 using static TownOfTrailay.Roles.TimeMasterRole;
@@ -14,7 +15,7 @@ namespace TownOfTrailay.Helpers
     public class HelperManager : MonoBehaviour
     {
         public static HelperManager Instance;
-        private static List<Helper> Helpers = new List<Helper>() { new TimeMasterHelper(), new ButtonSpriteHelper(), new LoadHelper(), new TOTRoleManager.NameHelper() };
+        private static List<Helper> Helpers = new List<Helper>() { new TimeMasterHelper(), new LoadHelper(), new TOTRoleManager.NameHelper() };
         public static bool CanUpdate => AmongUsClient.Instance.IsGameStarted || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
         public void Awake()
         {

@@ -16,10 +16,14 @@ namespace TownOfTrailay
 {
     public class ModMain
     {
+        public static bool TestBuild = true;
         public static Harmony Harmony = new Harmony("townoftrailay.gg");
         public static void Load()
         {
             TOTAssets.LoadAssets();
+            RoleManager roleManager = RoleManager.Instance;
+            roleManager.allSprites.Remove("reviveSprite");
+            roleManager.allSprites.Add("reviveSprite", TOTAssets.Drag);
             new GameObject("HelperManager").AddComponent<HelperManager>().DontDestroy();
             Harmony.PatchAll();
         }

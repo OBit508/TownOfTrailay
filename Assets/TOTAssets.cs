@@ -21,6 +21,9 @@ namespace TownOfTrailay.Assets
         public static Sprite Eat;
         public static Sprite YellowKill;
         public static Sprite JuggerKill;
+        public static Sprite ScavengerKill;
+        public static Sprite EatV;
+        public static Sprite Clean;
         public static void LoadAssets()
         {
             Clock = Utils.LoadSprite("TownOfTrailay.Assets.clock.png", 75);
@@ -36,6 +39,9 @@ namespace TownOfTrailay.Assets
             Eat = Utils.LoadSprite("TownOfTrailay.Assets.eat.png", 100);
             YellowKill = Utils.LoadSprite("TownOfTrailay.Assets.yellowKill.png", 100);
             JuggerKill = Utils.LoadSprite("TownOfTrailay.Assets.juggerKill.png", 100);
+            ScavengerKill = Utils.LoadSprite("TownOfTrailay.Assets.scavengerKill.png", 100);
+            EatV = Utils.LoadSprite("TownOfTrailay.Assets.eatV.png", 100);
+            Clean = Utils.LoadSprite("TownOfTrailay.Assets.clean.png", 100);
         }
     }
 }

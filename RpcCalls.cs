@@ -11,6 +11,8 @@ namespace TownOfTrailay
         RpcDisguise,
         RpcSwapTeam,
         RpcCustomMurder,
-        RpcPetrify
+        RpcPetrify,
+        RpcClean,
+        RpcDestroyDeadBody
     }
 }
