@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using TMPro;
 using TownOfTrailay.Assets;
+using TownOfTrailay.Components;
 using TownOfTrailay.Helpers.Role;
 using UnityEngine;
 using UnityEngine.Events;
@@ -114,6 +115,52 @@ namespace TownOfTrailay.Helpers.Utilities
         public static void ReportDeadBody(this PlayerControl player, GameData.PlayerInfo target)
         {
             typeof(PlayerControl).GetMethod("ReportDeadBody", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(player, new object[] { target });
+        }
+        public static void PetrifyPlayer(this PlayerControl player, PlayerControl target)
+        {
+            MedusaStatue statue = new GameObject(target.name + " - Statue").AddComponent<MedusaStatue>();
+            statue.transform.position = target.transform.position;
+            statue.transform.localScale = target.transform.localScale;
+            PlayerBody playerBody = GameObject.Instantiate<PlayerBody>(target.MyPhysics.CurBody, statue.transform);
+            statue.renderers.Add(playerBody.Rend);
+            playerBody.transform.position = target.MyPhysics.CurBody.transform.position;
+            DestroyAnimationComps(playerBody.transform);
+            SkinLayer skinLayer = GameObject.Instantiate<SkinLayer>(target.MyPhysics.Skin, statue.transform);
+            statue.renderers.Add(skinLayer.layer);
+            skinLayer.transform.position = target.MyPhysics.Skin.transform.position;
+            DestroyAnimationComps(skinLayer.transform);
+            SpriteRenderer hatRenderer = GameObject.Instantiate<SpriteRenderer>(target.HatRenderer, statue.transform);
+            statue.renderers.Add(hatRenderer);
+            hatRenderer.transform.position = target.HatRenderer.transform.position;
+            DestroyAnimationComps(hatRenderer.transform);
+            player.CustomMurderPlayer(target, true, false, false, false, false);
+        }
+        public static void DestroyAnimationComps(Transform transform)
+        {
+            if (transform.GetComponent<Animator>() != null)
+            {
+                GameObject.Destroy(transform.GetComponent<Animator>());
+            }
+            if (transform.GetComponent<SpriteAnim>() != null)
+            {
+                GameObject.Destroy(transform.GetComponent<SpriteAnim>());
+            }
+            if (transform.GetComponent<SpriteAnimNodes>() != null)
+            {
+                GameObject.Destroy(transform.GetComponent<SpriteAnimNodes>());
+            }
+            if (transform.GetComponent<PlayerBody>() != null)
+            {
+                GameObject.Destroy(transform.GetComponent<PlayerBody>());
+            }
+            if (transform.GetComponent<SpriteAnimNodeSync>() != null)
+            {
+                GameObject.Destroy(transform.GetComponent<SpriteAnimNodeSync>());
+            }
+            if (transform.GetComponent<SkinLayer>() != null)
+            {
+                GameObject.Destroy(transform.GetComponent<SkinLayer>());
+            }
         }
         public static void CustomMurderPlayer(this PlayerControl player, PlayerControl target, bool resetKillTimer = true, bool createDeadBody = true, bool teleportMurderer = true, bool showKillAnim = true, bool playKillSound = true)
         {
