@@ -29,7 +29,7 @@ namespace TownOfTrailay.Roles
         public override void OnRoleAdded()
         {
             Timer = KillCooldown + ExtraCooldown;
-            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, HudManager.Instance.KillButton.ButtonText.text, TOTAssets.JuggerKill, new Action(delegate
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, HudManager.Instance.KillButton.ButtonText.text, HudManager.Instance.KillButton.renderer.sprite, new Action(delegate
             {
                 if (CurrentTarget != null && Timer <= 0)
                 {
