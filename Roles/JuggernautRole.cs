@@ -17,6 +17,7 @@ namespace TownOfTrailay.Roles
         public override Color RoleColor { get; } = new Color32(140, 0, 77, byte.MaxValue);
         public override string roleDisplayName => "Juggernaut";
         public override string roleDescription => "After every kill your cooldown lowers";
+        public override string KillAbilityImageName => "juggerKill";
         public override bool NeutralKiller => true;
         public VanillaButtonManager Button;
         public float Timer;

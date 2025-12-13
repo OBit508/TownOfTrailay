@@ -13,7 +13,7 @@ namespace TownOfTrailay.Patches
         {
             if (AmongUsClient.Instance)
             {
-                string extraText = ModMain.TestBuild ? "\n<color=#00E3C9>TownOfTrailay</color>" : "";
+                string extraText = TownOfTrailayPlugin.TestBuild ? "\n<color=#00E3C9>TownOfTrailay</color>" : "";
                 string text = "\n<size=95%><color=red>Modding</color> <color=blue>Us</color>" + extraText;
                 string mapCredits = CreditState.MapCredits ?? "";
                 if (!string.IsNullOrEmpty(mapCredits))

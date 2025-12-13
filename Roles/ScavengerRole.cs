@@ -11,6 +11,7 @@ namespace TownOfTrailay.Roles
         public override Color RoleColor { get; } = Palette.ImpostorRed;
         public override string roleDisplayName => "Scavenger";
         public override string roleDescription => "You dont leave bodies.";
+        public override string KillAbilityImageName => "scavengerKill";
         public override bool CreateDeadBodyWheenKill => false;
         public override void ConfigureRole()
         {
