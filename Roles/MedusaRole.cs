@@ -15,6 +15,7 @@ namespace TownOfTrailay.Roles
         public override Color RoleColor { get; } = new Color32(0, 99, 13, byte.MaxValue);
         public override string roleDisplayName => "Medusa";
         public override string roleDescription => "You can petrify others.";
+        public override bool NeutralKiller => true;
         public VanillaButtonManager Button;
         public float PetrifyCooldown = 25;
         public float Timer;

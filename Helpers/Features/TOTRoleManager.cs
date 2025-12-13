@@ -72,6 +72,18 @@ namespace TownOfTrailay.Helpers.Features
             }
             return role.RoleTeamType == RoleTeamTypes.Crewmate ? Color.cyan : role.TeamColor;
         }
+        public static bool IsNeutralKiller(this RoleBehaviour role)
+        {
+            if (role.RoleTeamType != RoleTeamTypes.Neutral)
+            {
+                return false;
+            }
+            if (role is TOTBaseRole r)
+            {
+                return r.NeutralKiller;
+            }
+            return role.CanUseKillButton;
+        }
         public class NameHelper : HelperManager.Helper
         {
             public override void Update()

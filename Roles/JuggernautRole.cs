@@ -17,6 +17,7 @@ namespace TownOfTrailay.Roles
         public override Color RoleColor { get; } = new Color32(140, 0, 77, byte.MaxValue);
         public override string roleDisplayName => "Juggernaut";
         public override string roleDescription => "After every kill your cooldown lowers";
+        public override bool NeutralKiller => true;
         public VanillaButtonManager Button;
         public float Timer;
         public PlayerControl CurrentTarget;
@@ -75,7 +76,7 @@ namespace TownOfTrailay.Roles
             {
                 SpriteRenderer myRend = CurrentTarget.myRend;
                 myRend.material.SetFloat("_Outline", 1f);
-                myRend.material.SetColor("_OutlineColor", PlayerControl.LocalPlayer.Data.myRole.TeamColor);
+                myRend.material.SetColor("_OutlineColor", RoleColor);
                 Button.spriteRender.color = Palette.EnabledColor;
                 Button.spriteRender.material.SetFloat("_Desat", 0f);
                 return;

@@ -9,6 +9,7 @@ namespace TownOfTrailay.Helpers.Role
 {
     public class TOTBaseRole : RoleBehaviour
     {
+        public virtual bool NeutralKiller => false;
         public virtual bool CreateDeadBodyWheenKill => true;
         public virtual Color RoleColor => Color.white;
         public bool LocalPlayer => Player != null && Player.AmOwner;

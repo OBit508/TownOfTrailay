@@ -15,11 +15,63 @@ namespace TownOfTrailay.Roles
         public override Color RoleColor { get; } = new Color32(3, 90, 13, byte.MaxValue);
         public override string roleDisplayName => "Serial killer";
         public override string roleDescription => "You are Serial killer. kill everyone to win";
+        public override bool NeutralKiller => true;
+        public VanillaButtonManager Button;
+        public float Timer;
+        public PlayerControl CurrentTarget;
+        public float ExtraCooldown = 15;
         public override void ConfigureRole()
         {
             RoleTeamType = RoleTeamTypes.Neutral;
             enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Crewmate, RoleTeamTypes.Impostor, RoleTeamTypes.Neutral };
             CanUseKillButton = true;
+        }
+        public override void OnRoleAdded()
+        {
+            Timer = KillCooldown + ExtraCooldown;
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, HudManager.Instance.KillButton.ButtonText.text, TOTAssets.JuggerKill, new Action(delegate
+            {
+                if (CurrentTarget != null && Timer <= 0)
+                {
+                    Timer = KillCooldown + ExtraCooldown;
+                    Player.RpcCustomMurder(CurrentTarget, MurderResultFlags.Succeeded, false);
+                }
+            }));
+        }
+        public void Update()
+        {
+            if (LocalPlayer)
+            {
+                if (Timer > 0)
+                {
+                    Timer -= Time.deltaTime;
+                    if (Timer < 0)
+                    {
+                        Timer = 0;
+                    }
+                }
+                Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
+                SetTarget(Player.FindClosestTarget());
+            }
+        }
+        public void SetTarget(PlayerControl target)
+        {
+            if (CurrentTarget && CurrentTarget != target)
+            {
+                CurrentTarget.myRend.material.SetFloat("_Outline", 0f);
+            }
+            CurrentTarget = target;
+            if (CurrentTarget)
+            {
+                SpriteRenderer myRend = CurrentTarget.myRend;
+                myRend.material.SetFloat("_Outline", 1f);
+                myRend.material.SetColor("_OutlineColor", RoleColor);
+                Button.spriteRender.color = Palette.EnabledColor;
+                Button.spriteRender.material.SetFloat("_Desat", 0f);
+                return;
+            }
+            Button.spriteRender.color = Palette.DisabledColor;
+            Button.spriteRender.material.SetFloat("_Desat", 1f);
         }
     }
 }

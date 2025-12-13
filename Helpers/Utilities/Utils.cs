@@ -19,6 +19,7 @@ namespace TownOfTrailay.Helpers.Utilities
     public static class Utils
     {
         internal static MethodInfo ShipStatus_AllVents_Set = typeof(ShipStatus).GetProperty("AllVents").GetSetMethod(true);
+        internal static MethodInfo PlayerControl_ReportDeadBody = typeof(PlayerControl).GetMethod("ReportDeadBody", BindingFlags.Instance | BindingFlags.NonPublic);
         public static void PrivateSetName(this PlayerControl player, string name)
         {
             player.nameText.Text = name;
@@ -116,7 +117,7 @@ namespace TownOfTrailay.Helpers.Utilities
         }
         public static void ReportDeadBody(this PlayerControl player, GameData.PlayerInfo target)
         {
-            typeof(PlayerControl).GetMethod("ReportDeadBody", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(player, new object[] { target });
+            PlayerControl_ReportDeadBody.Invoke(player, new object[] { target });
         }
         public static Vent CreateVent(Vector2 position, Vent left = null, Vent center = null, Vent right = null)
         {
