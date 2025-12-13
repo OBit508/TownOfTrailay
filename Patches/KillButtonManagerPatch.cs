@@ -24,7 +24,7 @@ namespace TownOfTrailay.Patches
             }
             RoleBehaviour role = local.Data.myRole;
             __instance.ButtonText.text = role.KillAbilityName;
-            __instance.renderer.sprite = role is ClutchRole ? TOTAssets.ClutchKill : (role is SheriffRole || role is HunterRole ? TOTAssets.YellowKill : role is JuggernautRole ? TOTAssets.JuggerKill : role is PelicanRole ? TOTAssets.Eat : RoleManager.Instance.allSprites["killSprite"]);
+            __instance.renderer.sprite = role is ScavengerRole ? TOTAssets.ScavengerKill : role is ClutchRole ? TOTAssets.ClutchKill : (role is SheriffRole || role is HunterRole ? TOTAssets.YellowKill : role is JuggernautRole ? TOTAssets.JuggerKill : role is PelicanRole ? TOTAssets.Eat : RoleManager.Instance.allSprites["killSprite"]);
             return false;
         }
         [HarmonyPatch("SetTarget")]
