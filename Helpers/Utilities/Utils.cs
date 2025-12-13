@@ -239,11 +239,8 @@ namespace TownOfTrailay.Helpers.Utilities
         {
             bool isParticipant = PlayerControl.LocalPlayer == source || PlayerControl.LocalPlayer == target;
             PlayerPhysics sourcePhys = source.MyPhysics;
-            if (teleportMurderer)
-            {
-                KillAnimation.SetMovement(source, false);
-                KillAnimation.SetMovement(target, false);
-            }
+            KillAnimation.SetMovement(source, false);
+            KillAnimation.SetMovement(target, false);
             if (isParticipant)
             {
                 Camera.main.GetComponent<FollowerCamera>().Locked = true;
@@ -256,10 +253,7 @@ namespace TownOfTrailay.Helpers.Utilities
                 source.NetTransform.SnapTo(target.transform.position);
             }
             sourceAnim.Play(sourcePhys.IdleAnim, 1f);
-            if (resetKillTimer)
-            {
-                KillAnimation.SetMovement(source, true);
-            }
+            KillAnimation.SetMovement(source, true);
             if (createDeadBody)
             {
                 DeadBody deadBody = global::UnityEngine.Object.Instantiate<DeadBody>(killAnimation.bodyPrefab);
@@ -269,10 +263,7 @@ namespace TownOfTrailay.Helpers.Utilities
                 deadBody.ParentId = target.PlayerId;
                 target.SetPlayerMaterialColors(deadBody.MyRend);
             }
-            if (teleportMurderer)
-            {
-                KillAnimation.SetMovement(target, true);
-            }
+            KillAnimation.SetMovement(target, true);
             if (isParticipant)
             {
                 Camera.main.GetComponent<FollowerCamera>().Locked = false;
