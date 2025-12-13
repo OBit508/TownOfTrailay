@@ -21,6 +21,7 @@
 	  <None Remove="Assets\clean.png" />
 	  <None Remove="Assets\clock.png" />
 	  <None Remove="Assets\clutchKill.png" />
+	  <None Remove="Assets\dig.png" />
 	  <None Remove="Assets\Drag.png" />
 	  <None Remove="Assets\eat.png" />
 	  <None Remove="Assets\eatV.png" />
@@ -100,6 +101,7 @@
 	  <EmbeddedResource Include="Assets\clean.png" />
 	  <EmbeddedResource Include="Assets\clock.png" />
 	  <EmbeddedResource Include="Assets\clutchKill.png" />
+	  <EmbeddedResource Include="Assets\dig.png" />
 	  <EmbeddedResource Include="Assets\drag.png" />
 	  <EmbeddedResource Include="Assets\eat.png" />
 	  <EmbeddedResource Include="Assets\eatV.png" />

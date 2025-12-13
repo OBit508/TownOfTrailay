@@ -27,7 +27,7 @@ namespace TownOfTrailay.Roles
         }
         public override void OnRoleAdded()
         {
-            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Clean", TOTAssets.Clean, new Action(delegate
+            Button = Utils.CreateButton(HudManager.Instance.transform.Find("Buttons/BottomRight").transform, this, "Eat", TOTAssets.EatV, new Action(delegate
             {
                 if (CurrentTarget != null && Timer <= 0)
                 {
@@ -44,16 +44,19 @@ namespace TownOfTrailay.Roles
         }
         public void Update()
         {
-            if (Timer > 0)
+            if (LocalPlayer)
             {
-                Timer -= Time.deltaTime;
-                if (Timer < 0)
+                if (Timer > 0)
                 {
-                    Timer = 0;
+                    Timer -= Time.deltaTime;
+                    if (Timer < 0)
+                    {
+                        Timer = 0;
+                    }
                 }
+                Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
+                SetTarget(PlayerControl.LocalPlayer.GetClosestBody(0.5f));
             }
-            Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
-            SetTarget(PlayerControl.LocalPlayer.GetClosestBody(0.5f));
         }
         public void SetTarget(DeadBody target)
         {

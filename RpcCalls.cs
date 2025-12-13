@@ -13,6 +13,7 @@ namespace TownOfTrailay
         RpcCustomMurder,
         RpcPetrify,
         RpcClean,
-        RpcDestroyDeadBody
+        RpcDestroyDeadBody,
+        RpcCreateVent
     }
 }

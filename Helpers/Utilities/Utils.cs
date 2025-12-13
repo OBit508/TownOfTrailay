@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using TMPro;
@@ -17,6 +18,7 @@ namespace TownOfTrailay.Helpers.Utilities
 {
     public static class Utils
     {
+        internal static MethodInfo ShipStatus_AllVents_Set = typeof(ShipStatus).GetProperty("AllVents").GetSetMethod(true);
         public static void PrivateSetName(this PlayerControl player, string name)
         {
             player.nameText.Text = name;
@@ -115,6 +117,17 @@ namespace TownOfTrailay.Helpers.Utilities
         public static void ReportDeadBody(this PlayerControl player, GameData.PlayerInfo target)
         {
             typeof(PlayerControl).GetMethod("ReportDeadBody", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(player, new object[] { target });
+        }
+        public static Vent CreateVent(Vector2 position, Vent left = null, Vent center = null, Vent right = null)
+        {
+            Vent vent = GameObject.Instantiate<Vent>(ShipStatus.Instance.AllVents[0]);
+            vent.Id = ShipStatus.Instance.AllVents.Count();
+            ShipStatus_AllVents_Set.Invoke(ShipStatus.Instance, new object[] { ShipStatus.Instance.AllVents.Concat(new Vent[] { vent }).ToArray() });
+            vent.Right = right;
+            vent.Center = center;
+            vent.Left = left;
+            vent.transform.position = new Vector3(position.x, position.y, position.y / 1000 + 0.001f);
+            return vent;
         }
         public static void PetrifyPlayer(this PlayerControl player, PlayerControl target)
         {

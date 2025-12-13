@@ -18,7 +18,7 @@ namespace TownOfTrailay.Roles
         public override string roleDescription => "Clears the body.";
         public DeadBody CurrentTarget;
         public VanillaButtonManager Button;
-        public float CleanCooldown = 15;
+        public float CleanCooldown = 20;
         public float Timer;
         public override void ConfigureRole()
         {
@@ -41,16 +41,24 @@ namespace TownOfTrailay.Roles
         }
         public void Update()
         {
-            if (Timer > 0)
+            if (LocalPlayer)
             {
-                Timer -= Time.deltaTime;
-                if (Timer < 0)
+                if (Timer > 0)
                 {
-                    Timer = 0;
+                    Timer -= Time.deltaTime;
+                    if (Timer < 0)
+                    {
+                        Timer = 0;
+                    }
                 }
+                Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
+                SetTarget(PlayerControl.LocalPlayer.GetClosestBody(0.5f));
             }
-            Button.CooldownText.text = Timer > 0 ? ((int)Timer).ToString() : "";
-            SetTarget(PlayerControl.LocalPlayer.GetClosestBody(0.5f));
+        }
+        public override void OnMurder(PlayerControl target)
+        {
+            base.OnMurder(target);
+            Timer = CleanCooldown / 2;
         }
         public void RpcClean(DeadBody deadBody)
         {
